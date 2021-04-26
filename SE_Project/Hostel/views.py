@@ -3,5 +3,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('Complaint system')
-    #return render(request, 'Hostel/login.html')
+    #return HttpResponse('Complaint system')
+    return render(request, 'Hostel/index.html')
