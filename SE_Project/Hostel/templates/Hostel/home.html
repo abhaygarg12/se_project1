@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hostel Complaint system</title>
+<link href="/static/Hostel/home.css" rel="stylesheet" >
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<!-- jQuery library -->
+
+
+<!-- Latest compiled JavaScript --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+  
+        
+    <header>
+        <div class="container bg-info p-5 ">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Complaints</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
+                  </form>
+                </div>
+              </nav>
+        </div>
+      </header>
+        
+     
+      <!---->
+      <main>
+      <div class="container my-5">
+             <div class="card-body text-center">
+          <h4 class="card-title">Student Complaint system</h4>
+          
+        </div>
+          <div class="card">
+              <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button>
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Complaint type</th>
+                      <th scope="col">deadline</th>
+                      <th scope="col">Edit Complaint </th>
+                      <th scope="col">Complaint  info</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>       
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> delete</a> 
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+          <!-- Large modal -->
+      
+      
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+                <div class="card-body text-center">
+                  <h4 class="card-title">Add a new Complaint</h4>
+                </div>
+                  <div class=" card col-8 offset-2 my-2 p-3">
+                <form>
+                  <div class="form-group">
+                    <label for="listname">Complaint type</label>
+                    <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
+                  </div>
+                  <div class="form-group">
+                    <label for="datepicker">Deadline</label>
+                    <input  type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Pick up a date">
+                  </div>
+                  <div class="form-group">
+                                          <label for="datepicker">Add description</label>
+                      <div class="input-group">
+      
+                        <input type="text" class="form-control" placeholder="Add an item" aria-label="Search for...">
+                        
+                      </div>
+                    </div>
+                 <div class="form-group text-center">
+                   <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                </div>
+              </form>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </main>
+      <!---->
+      
+      <!---->
+      <footer >
+        <div class="container bg-info p-5">
+      
+          </div>
+      </footer>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

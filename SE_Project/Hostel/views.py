@@ -8,7 +8,7 @@ def login(request):
     return render(request, 'Hostel/login_form.html')
     
 def home(request):
-    return render(request, 'Hostel/login_form.html')
+    return render(request, 'Hostel/home.html')
 
 def register(request):
     form = RegisterStudentForm()
@@ -19,4 +19,12 @@ def register(request):
             form.save()
     
     context = {'form':form}
-    return render(request, 'Hostel/register.html', context)
+    return render(request, 'Hostel/register_form.html', context)
+
+
+
+'''def register(request):
+    # return HttpResponse('Complaint system')
+    return render(request, 'Hostel/home.html')
+    return render(request, 'Hostel/login_form.html')'''
+
