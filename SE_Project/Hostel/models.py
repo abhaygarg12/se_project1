@@ -1,18 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator,MaxLengthValidator
+
 
 # Create your models here.
 class Students(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    roll_no = models.IntegerField(validators=[MinLengthValidator(9),MaxLengthValidator(9)], primary_key=True)
-    dob = models.DateField(max_length=10,help_text="format : DD-MM-YYYY")
-    mobile = models.IntegerField(validators=[MinLengthValidator(10),MaxLengthValidator(10)])
+    full_name = models.CharField( max_length=50)
+    roll_no = models.IntegerField(primary_key=True)
+    dob = models.DateField(max_length=10,help_text="format : DD-MM-YYYY", auto_now_add=True)
+    mobile = models.IntegerField()
     room_no = models.CharField(max_length=5)
 
     def __str__(self):
-        str = self.user.first_name + " " + self.user.last_name
-        return str
+        return str(self.roll_no)
 
 
 class Complaints(models.Model):

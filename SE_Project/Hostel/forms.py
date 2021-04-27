@@ -15,3 +15,9 @@ class ComplaintForm(ModelForm):
 	class Meta:
 		model = Complaints
 		fields = '__all__'
+
+class StudentDetailForm(ModelForm):
+    class Meta:
+        model = Students
+        fields = '__all__'
+    

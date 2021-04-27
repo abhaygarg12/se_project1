@@ -34,9 +34,8 @@
                       <a class="nav-link" href="#">Link</a>
                     </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
-                  </form>
+                  <span>Hello, {{request.user.get_full_name}} </span>
+                  <a href="{% url 'user-logout' %}" class="btn btn-outline-primary my-2 my-sm-0">Logout</a>
                 </div>
               </nav>
         </div>
