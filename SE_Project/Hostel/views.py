@@ -23,7 +23,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'Hostel/register.html', context)
 
-def addComplaint(request):
+def new_complaint(request):
     form = ComplaintForm()
     
     if request.method == "POST":
