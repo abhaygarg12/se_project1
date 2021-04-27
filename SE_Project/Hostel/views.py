@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterStudentForm
+from django.forms import ModelForm
+from .forms import RegisterStudentForm,ComplaintForm
+from .models import *
 
 # Create your views here.
 
@@ -19,12 +21,34 @@ def register(request):
             form.save()
     
     context = {'form':form}
-    return render(request, 'Hostel/register_form.html', context)
+    return render(request, 'Hostel/register.html', context)
+
+def addComplaint(request):
+    form = ComplaintForm()
+    
+    if request.method == "POST":
+        form = ComplaintForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home/')
+    
+    context = {'form':form}
+    return render(request, 'Hostel/register.html', context)
+
+'''
+#original function
+def new_complaint(request, pk):
+    student = Students.objects.all(id = pk)
+    form = ComplaintForm(initial={'student':student})
+
+    if request.method == 'POST':
+		form = ComplaintForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('home/')
+
+	context = {'form':form}
+	return render(request, 'Hostel/new_complaint.html', context)'''
 
 
-
-'''def register(request):
-    # return HttpResponse('Complaint system')
-    return render(request, 'Hostel/home.html')
-    return render(request, 'Hostel/login_form.html')'''
 

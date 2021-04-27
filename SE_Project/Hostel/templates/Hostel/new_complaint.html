@@ -1,0 +1,9 @@
+<h3> New Complaint </h3>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    {{cform.as_p}}
+
+    <input type="submit" name="new_complaint">
+</form>
