@@ -11,4 +11,4 @@ def home(request):
 
 def register(request):
     # return HttpResponse('Complaint system')
-    return render(request, 'Hostel/registerform.html')
+    return render(request, 'Hostel/home.html')

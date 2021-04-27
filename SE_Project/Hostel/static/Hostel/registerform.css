@@ -1,61 +1,16 @@
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-
-.border-md {
-  border-width: 2px;
-}
-
-.btn-facebook {
-  background: #405d9d;
-  border: none;
-}
-
-.btn-facebook:hover,
-.btn-facebook:focus {
-  background: #314879;
-}
-
-.btn-twitter {
-  background: #42aeec;
-  border: none;
-}
-
-.btn-twitter:hover,
-.btn-twitter:focus {
-  background: #1799e4;
-}
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
-
 body {
-  min-height: 100vh;
+  background-color: #eee;
 }
 
-.form-control:not(select) {
-  padding: 1.5rem 0.5rem;
+*[role="form"] {
+  max-width: 530px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.3em;
 }
 
-select.form-control {
-  height: 52px;
-  padding-left: 0.5rem;
-}
-
-.form-control::placeholder {
-  color: #ccc;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-.form-control:focus {
-  box-shadow: none;
+*[role="form"] h2 {
+  margin-left: 5em;
+  margin-bottom: 1em;
 }
