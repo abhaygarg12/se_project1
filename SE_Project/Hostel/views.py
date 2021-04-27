@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from .forms import *
@@ -16,7 +16,7 @@ from .decoraters import *
 @unauthenticated_user
 def register(request):
     form = RegisterStudentForm()
-    
+
     if request.method == "POST":
         form = RegisterStudentForm(request.POST)
         if form.is_valid():
@@ -75,7 +75,7 @@ def home(request):
 @login_required(login_url='user-login')
 def new_complaint(request):
     form = ComplaintForm()
-    
+
     if request.method == "POST":
         form = ComplaintForm(request.POST)
         if form.is_valid():
@@ -84,6 +84,7 @@ def new_complaint(request):
     
     context = {'form':form}
     return render(request, 'Hostel/register.html', context)
+
 
 '''
 #original function
@@ -99,6 +100,3 @@ def new_complaint(request, pk):
 
 	context = {'form':form}
 	return render(request, 'Hostel/new_complaint.html', context)'''
-
-
-
