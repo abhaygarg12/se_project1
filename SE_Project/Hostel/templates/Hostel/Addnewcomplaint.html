@@ -34,9 +34,8 @@
                       <a class="nav-link" href="#">Link</a>
                     </li> -->
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
-                  </form>
+                  <span>Hello, {{request.user.get_full_name}} </span>
+                  <a href="{% url 'user-logout' %}" class="btn btn-outline-primary my-2 my-sm-0">Logout</a>
                 </div>
               </nav>
         </div>
@@ -107,8 +106,8 @@
                   <div class=" card col-8 offset-2 my-2 p-3">
                 <form>
                   <div class="form-group">
-                    <label for="listname">Complaint type</label>
-                    <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
+                    <label for="listname">Title</label>
+                    <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter title">
                   </div>
                   <div class="form-group">
                     <label for="datepicker">Location</label>
@@ -122,6 +121,17 @@
                         
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="datepicker">Status</label>
+                  <div class="input-group">
+
+                    <select class="form-control">
+                      <option class="form-control">Pending</option>
+                      <option class="form-control">Completed</option>
+                    </select>
+                    
+                  </div>
+                </div>
                  <div class="form-group text-center">
                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
                 </div>
