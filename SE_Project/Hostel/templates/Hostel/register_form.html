@@ -14,33 +14,63 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" action="" method="POST">
+            {% csrf_token %}
             <h2>Registration Form</h2>
             <div class="form-group">
                 <label for="firstName" class="col-sm-3 control-label">Username</label>
                 <div class="col-sm-9">
-                    <input type="text" id="firstName" placeholder="Enter Username" class="form-control" autofocus>
-                    
+                    <input type="text" name="username" id="firstName" placeholder="Enter Username" class="form-control" autofocus>
                 </div>
             </div>
             <div class="form-group">
                 <label for="email" class="col-sm-3 control-label">Email</label>
                 <div class="col-sm-9">
-                    <input type="email" id="email" placeholder="Email" class="form-control">
+                    <input type="email" name="email" id="email" placeholder="Email" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
-                    <input type="password" id="password" placeholder="Password" class="form-control">
+                    <input type="password" name="password1" id="password" placeholder="Password" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">Confirm Password</label>
                 <div class="col-sm-9">
-                    <input type="password" id="password" placeholder="Confirm Password" class="form-control">
+                    <input type="password" name="password2" id="password" placeholder="Confirm Password" class="form-control">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Full Name</label>
+                <div class="col-sm-9">
+                    <input type="text" name="full_name" id="email" placeholder="Enter Room No" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">Roll Number</label>
+                <div class="col-sm-9">
+                    <input type="number" name="roll_no" id="firstName" placeholder="Enter Roll No" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Room Number</label>
+                <div class="col-sm-9">
+                    <input type="text" name="room_no" id="email" placeholder="Enter Room No" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Mobile Number</label>
+                <div class="col-sm-9">
+                    <input type="number" name = "mobile" id="email" placeholder="Enter Room No" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+                <div class="col-sm-9">
+                    <input type="date" name="dob" id="birthDate" class="form-control">
+                </div>
+            </div> 
             <!-- <div class="form-group">
                 <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
                 <div class="col-sm-9">
@@ -108,6 +138,12 @@
                     </div>
                 </div>
             </div> -->
+
+            <div>
+                {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                {% endfor %}
+            </div>
             <div class="form-group">
                 <div class="col-sm-9 col-sm-offset-3">
                     <button type="submit" class="btn btn-primary btn-block">Register</button>
