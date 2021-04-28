@@ -10,7 +10,7 @@ class Student(models.Model):
     room_no = models.CharField(max_length=5)
 
     def __str__(self):
-        return str(self.roll_no)
+        return str(self.full_name)
 
 
 class Complaint(models.Model):
@@ -19,7 +19,7 @@ class Complaint(models.Model):
 			('Completed', 'Completed'),
     }
 
-    roll_no = models.ForeignKey(User, on_delete = models.CASCADE)
+    roll_no = models.ForeignKey(Student, on_delete = models.CASCADE)
     title = models.CharField(max_length=30, default= "")
     description = models.CharField(max_length=150)
     date_created = models.DateField(auto_now_add=True)
