@@ -13,11 +13,5 @@ class RegisterStudentForm(UserCreationForm):
     
 class ComplaintForm(ModelForm):
 	class Meta:
-		model = Complaints
+		model = Complaint
 		fields = '__all__'
-
-class StudentDetailForm(ModelForm):
-    class Meta:
-        model = Students
-        fields = '__all__'
-    

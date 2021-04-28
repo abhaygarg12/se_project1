@@ -35,7 +35,7 @@ def register(request):
             elif User.objects.filter(email = email).exists():
                 messages.error(request, "Email already registered")
                 return redirect('user-register')
-            elif Students.objects.filter(roll_no = roll_no).exists():
+            elif Student.objects.filter(roll_no = roll_no).exists():
                 messages.error(request, "Roll number already registered")
                 return redirect('user-register')
             else:
@@ -45,7 +45,7 @@ def register(request):
                 group = Group.objects.get(name = "student")
                 user.groups.add(group)
 
-                student = Students.objects.create(user=user, full_name=full_name, room_no=room_no, roll_no=roll_no, mobile=mobile, dob=dob)
+                student = Student.objects.create(user=user, full_name=full_name, room_no=room_no, roll_no=roll_no, mobile=mobile, dob=dob)
                 #student.save()
 
                 return redirect('user-login')

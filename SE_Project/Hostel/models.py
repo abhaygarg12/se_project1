@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Students(models.Model):
+class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField( max_length=50)
     roll_no = models.IntegerField(primary_key=True)
@@ -15,20 +15,15 @@ class Students(models.Model):
         return str(self.roll_no)
 
 
-class Complaints(models.Model):
+class Complaint(models.Model):
     STATUS = {
 			('Pending', 'Pending'),
 			('Completed', 'Completed'),
     }
 
-    rollno = models.ForeignKey(Students, on_delete = models.CASCADE)
+    rollno = models.ForeignKey(Student, on_delete = models.CASCADE)
     title = models.CharField(max_length=30, default= "")
     description = models.CharField(max_length=150)
     date_created = models.DateField(auto_now_add=True)
     location = models.CharField(max_length=20)
-    status = models.CharField(max_length=20, choices=STATUS)
-
-
-
-
-    
+    status = models.CharField(max_length=20, choices=STATUS)   

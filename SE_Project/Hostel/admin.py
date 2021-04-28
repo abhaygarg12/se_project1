@@ -3,5 +3,5 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Students)
-admin.site.register(Complaints)
+admin.site.register(Student)
+admin.site.register(Complaint)
