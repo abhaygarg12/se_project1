@@ -2,156 +2,105 @@
 <html>
 <head>
 <title>Hostel Complaint system</title>
-<link href="/static/Hostel/register_form.css" rel="stylesheet" >
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
 <body>
     <div class="container">
-        <form class="form-horizontal" role="form" action="" method="POST">
-            {% csrf_token %}
-            <h2>Registration Form</h2>
-            <div class="form-group">
-                <label for="firstName" class="col-sm-3 control-label">Username</label>
-                <div class="col-sm-9">
-                    <input type="text" name="username" id="firstName" placeholder="Enter Username" class="form-control" autofocus>
-                </div>
+        <!-- <br>  <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p>
+        <hr> -->
+        
+        
+        
+        
+        
+        <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <br>
+            
+            <!-- <p class="text-center">Get started with your free account</p> -->
+            <!-- <p>
+                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+            </p> -->
+            <!-- <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p> -->
+            <form>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+                <input name="username" class="form-control" placeholder="Username" type="text">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+                <input name="email" pattern=".+@thapar.edu" title="enter mail of thapar" class="form-control" placeholder="Email address" type="email">
             </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Email</label>
-                <div class="col-sm-9">
-                    <input type="email" name="email" id="email" placeholder="Email" class="form-control">
-                </div>
+             <!-- form-group// -->
+             <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+                <input name="" class="form-control" placeholder="full name" type="email">
             </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">Password</label>
-                <div class="col-sm-9">
-                    <input type="password" name="password1" id="password" placeholder="Password" class="form-control">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">Confirm Password</label>
-                <div class="col-sm-9">
-                    <input type="password" name="password2" id="password" placeholder="Confirm Password" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Full Name</label>
-                <div class="col-sm-9">
-                    <input type="text" name="full_name" id="email" placeholder="Enter Room No" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="firstName" class="col-sm-3 control-label">Roll Number</label>
-                <div class="col-sm-9">
-                    <input type="number" name="roll_no" id="firstName" placeholder="Enter Roll No" class="form-control" autofocus>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Room Number</label>
-                <div class="col-sm-9">
-                    <input type="text" name="room_no" id="email" placeholder="Enter Room No" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Mobile Number</label>
-                <div class="col-sm-9">
-                    <input type="number" name = "mobile" id="email" placeholder="Enter Room No" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
-                <div class="col-sm-9">
-                    <input type="date" name="dob" id="birthDate" class="form-control">
-                </div>
+                <select class="custom-select" style="max-width: 120px;">
+                    <option selected="">+91</option>
+                    
+                </select>
+                <input name="" class="form-control" placeholder="Phone number" type="text">
             </div> 
-            <!-- <div class="form-group">
-                <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
-                <div class="col-sm-9">
-                    <input type="date" id="birthDate" class="form-control">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
                 </div>
-            </div>
+                <input name="" class="form-control" placeholder="Room number" type="email">
+            </div> <!-- form-group end.// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Create password" type="password">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Repeat password" type="password">
+            </div> <!-- form-group// -->                                      
             <div class="form-group">
-                <label for="country" class="col-sm-3 control-label">Country</label>
-                <div class="col-sm-9">
-                    <select id="country" class="form-control">
-                        <option>Afghanistan</option>
-                        <option>Bahamas</option>
-                        <option>Cambodia</option>
-                        <option>Denmark</option>
-                        <option>Ecuador</option>
-                        <option>Fiji</option>
-                        <option>Gabon</option>
-                        <option>Haiti</option>
-                    </select>
-                </div>
-            </div> -->
-            <!-- <div class="form-group">
-                <label class="control-label col-sm-3">Gender</label>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="radio-inline">
-                                <input type="radio" id="femaleRadio" value="Female">Female
-                            </label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="radio-inline">
-                                <input type="radio" id="maleRadio" value="Male">Male
-                            </label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="radio-inline">
-                                <input type="radio" id="uncknownRadio" value="Unknown">Unknown
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- /.form-group -->
-            <!-- <div class="form-group">
-                <label class="control-label col-sm-3">Meal Preference</label>
-                <div class="col-sm-9">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="calorieCheckbox" value="Low calorie">Low calorie
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="saltCheckbox" value="Low salt">Low salt
-                        </label>
-                    </div>
-                </div>
-            </div> <!-- /.form-group -->
-            <!-- <div class="form-group">
-                <div class="col-sm-9 col-sm-offset-3">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">I accept <a href="#">terms</a>
-                        </label>
-                    </div>
-                </div>
-            </div> -->
-
-            <div>
-                {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                {% endfor %}
-            </div>
-            <div class="form-group">
-                <div class="col-sm-9 col-sm-offset-3">
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
-                </div>
-            </div>
-        </form> <!-- /form -->
-    </div> <!-- ./container -->
-
+                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+            </div> <!-- form-group// -->      
+            <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+        </form>
+        </article>
+        </div> <!-- card.// -->
+        
+        </div> 
+        <!--container end.//-->
+        
+        <!-- <br><br>
+        <article class="bg-secondary mb-3">  
+        <div class="card-body text-center">
+            <h3 class="text-white mt-3">Bootstrap 4 UI KIT</h3>
+        <p class="h5 text-white">Components and templates  <br> for Ecommerce, marketplace, booking websites 
+        and product landing pages</p>   <br>
+        <p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com  
+         <i class="fa fa-window-restore "></i></a></p>
+        </div>
+        <br><br>
+        </article> -->
 
 
 </body>
