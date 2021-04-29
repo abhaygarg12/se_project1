@@ -43,8 +43,6 @@ def home_pages(view_func):
 			elif group == 'caretaker':
 				return redirect('caretaker-home')
 
-			else:
-				return HttpResponse('You are not authorized to view this page')
 		else:
 			return HttpResponse('Please register yourself to access this page')
 	return wrapper_function
