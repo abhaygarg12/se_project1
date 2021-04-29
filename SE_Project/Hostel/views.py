@@ -14,7 +14,6 @@ from .decoraters import *
 
 # Create your views here.
 
-
 @unauthenticated_user
 def register(request):
 
@@ -25,7 +24,8 @@ def register(request):
         password2 = request.POST.get("password2")
         room_no = request.POST.get("room_no")
         mobile = request.POST.get("mobile")
-        full_name = request.POST.get("full_name")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
 
 
         if password1 == password2:
@@ -36,13 +36,13 @@ def register(request):
                 messages.error(request, "Email already registered")
                 return redirect('user-register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password1)
+                user = User.objects.create_user(username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
                 user.save()
                 messages.success(request, "Account created for " + username)
                 group = Group.objects.get(name="student")
                 user.groups.add(group)
 
-                student = Student.objects.create(user=user, full_name=full_name, room_no=room_no, mobile=mobile)
+                student = Student.objects.create(user=user, room_no=room_no, mobile=mobile)
 
                 return redirect('user-login')
         else:
@@ -74,10 +74,34 @@ def logout_user(request):
     logout(request)
     return redirect('user-login')
 
+@login_required
+def change_pass(request):
+    
+    if request.method == "POST":
+        password = request.POST.get("password")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        user = User.objects.get(username=request.user)
+        if user.check_password(password):
+            if password1 == password2:
+                user.set_password(password)
+                user.save()
+                return redirect('Hostel-home')
+            else:
+                messages.error(request, "Passwords do not match")
+                return redirect('change-pass')
+        else:
+            messages.error(request, "Enter the correct old password")
+            return redirect('change-pass')
+
+    return render(request, 'Hostel/change_pass.html')
 
 @login_required(login_url='user-login')
 def home(request):
-    return render(request, 'Hostel/home.html')
+    complaints = Complaint.objects.all()
+    context={'complaints':complaints}
+    return render(request, 'Hostel/home.html', context)
 
 
 @login_required(login_url='user-login')
