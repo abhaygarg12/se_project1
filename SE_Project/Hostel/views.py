@@ -141,7 +141,7 @@ def user_home(request):
     student = Student.objects.get(user = user)
 
     complaints = Complaint.objects.filter(name = student)
-    context={'complaints':complaints}
+    context={'complaints':complaints,}
     return render(request, 'Hostel/home.html', context)
 
 
