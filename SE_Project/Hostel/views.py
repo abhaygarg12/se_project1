@@ -48,7 +48,7 @@ def register(request):
     return render(request, 'Hostel/register_form.html')
 
 @unauthenticated_user
-def login_page(request):
+def login_user(request):
 
     if request.method == "POST":
         username = request.POST.get("username")
@@ -138,15 +138,16 @@ def user_home(request):
 def student_home(request):
     user = User.objects.get(username=request.user)
     student = Student.objects.get(user = user)
-
     complaints = Complaint.objects.filter(name = student)
-    context={'complaints':complaints,}
+    context={'complaints':complaints}
     return render(request, 'Hostel/student_home.html', context)
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
-    pass
+    complaints = Complaint.objects.all()
+    context={'complaints':complaints}
+    return render(request, 'Hostel/student_home.html', context)    
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
@@ -214,19 +215,25 @@ def new_complaint(request):
     context = {'form': form}
     return render(request, 'Hostel/Addnewcomplaint.html', context)
 
-
-
-'''
-#original functions
-def new_complaint(request, pk):
-    student = Students.objects.all(id = pk)
-    form = ComplaintForm(initial={'student':student})
-
-    if request.method == 'POST':
-		form = ComplaintForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('home/')
-
-	context = {'form':form}
-	return render(request, 'Hostel/new_complaint.html', context)'''
+@login_required(login_url='user-login')
+#@allowed_users(allowed_roles=['warden'])
+def add_caretaker(request, pk):
+    '''student = Student.objects.get(id=pk)
+    user = User.objects.get(username=student.user.username)'''
+    user = User.objects.get(id=pk)
+    user.groups.clear()
+    group = Group.objects.get(name="caretaker")
+    user.groups.add(group)
+    user.save()
+    return redirect('caretaker-home')
+    #return redirect('Hostel-home')
+    
+@login_required(login_url='user-login')
+#@allowed_users(allowed_roles=['warden'])
+def remove_caretaker(request, pk):
+    if request.method == "POST":
+        user = User.objects.get(id=pk)
+        user.delete()
+        #return redirect('Hostel-home')
+        return redirect('user-login')
+    return render(request, 'Hostel/remove_caretaker.html')
