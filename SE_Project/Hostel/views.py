@@ -16,7 +16,6 @@ from .decoraters import *
 
 @unauthenticated_user
 def register(request):
-
     if request.method == "POST":
         username = request.POST.get("username")
         email = request.POST.get("email")
@@ -26,7 +25,6 @@ def register(request):
         mobile = request.POST.get("mobile")
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
-
 
         if password1 == password2:
             if User.objects.filter(username=username).exists():
@@ -41,16 +39,13 @@ def register(request):
                 messages.success(request, "Account created for " + username)
                 group = Group.objects.get(name="student")
                 user.groups.add(group)
-
                 student = Student.objects.create(user=user, room_no=room_no, mobile=mobile)
-
                 return redirect('user-login')
         else:
             messages.error(request, "Passwords do not match")
             return redirect('user-register')
 
     return render(request, 'Hostel/register_form.html')
-
 
 @unauthenticated_user
 def login_page(request):
@@ -146,7 +141,7 @@ def student_home(request):
 
     complaints = Complaint.objects.filter(name = student)
     context={'complaints':complaints,}
-    return render(request, 'Hostel/home.html', context)
+    return render(request, 'Hostel/student_home.html', context)
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['caretaker'])
@@ -161,14 +156,50 @@ def warden_home(request):
 @login_required(login_url='user-login')
 #@allowed_users(allowed_roles=['caretaker', 'warden'])
 def delete_student(request, pk):
-    '''student = Student.objects.get(id=pk)
-    user = User.objects.get(username=student.user.username)'''
-    user = User.objects.get(id=pk)
-    student = Student.objects.get(user=user)
-    student.delete()
-    user.delete()
-    messages.info(request, 'Student deleted')
-    return redirect('Hostel-home')
+    if request.method == "POST":
+        '''student = Student.objects.get(id=pk)
+        user = User.objects.get(username=student.user.username)'''
+        user = User.objects.get(id=pk)
+        student = Student.objects.get(user=user)
+        student.delete()
+        user.delete()
+        messages.info(request, 'Student deleted')
+        return redirect('Hostel-home')
+    return render(request, 'Hostel/delete_student.html')
+
+@login_required(login_url='user-login')
+#@allowed_users(allowed_roles=['caretaker', 'warden'])
+def add_student(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+        room_no = request.POST.get("room_no")
+        mobile = request.POST.get("mobile")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Roll number already registered")
+                return redirect('add-student')
+            elif User.objects.filter(email=email).exists():
+                messages.error(request, "Email already registered")
+                return redirect('add-student')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
+                user.save()
+                messages.success(request, "Account created for " + username)
+                group = Group.objects.get(name="student")
+                user.groups.add(group)
+                student = Student.objects.create(user=user, room_no=room_no, mobile=mobile)
+                return redirect('Hostel-home')
+        else:
+            messages.error(request, "Passwords do not match")
+            return redirect('add-student')
+
+    return render(request, 'Hostel/add_student.html')
 
 @login_required(login_url='user-login')
 def new_complaint(request):

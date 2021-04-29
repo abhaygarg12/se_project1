@@ -15,6 +15,8 @@ urlpatterns = [
     path('update_details/',views.update_details, name='update-datails'),
     path('change_pass/',views.change_pass, name='change-pass'),
     path('delete_student/<str:pk>',views.delete_student, name='delete-student'),
+    path('add_student/',views.add_student, name='add-student'),
+
 
     path('new_complaint/', views.new_complaint, name='new-complaint'),
 

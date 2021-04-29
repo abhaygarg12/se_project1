@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Hostel Complaint system</title>
-<link href="/static/Hostel/home.css" rel="stylesheet" >
+<link href="/static/Hostel/student_home.css" rel="stylesheet" >
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -60,6 +60,7 @@
                       <th scope="col">S.No</th>
                       <th scope="col">Complaint title</th>
                       <th scope="col">Location</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Edit Complaint </th>
                       <th scope="col">Complaint  info</th>
                     </tr>
@@ -70,9 +71,10 @@
                       <th scope="row">{{ complaint.id }}</th>
                       <td>{{complaint.title}}</td>
                       <td>{{complaint.location}}</td>
+                      <td>{{complaint.status}}</td>
                       <td>
-                          <a class="btn btn-sm btn-primary" href="{% url 'delete-student' request.user.id %}"><i class="far fa-edit"></i>Edit</a>
-                          <a class="btn btn-sm btn-danger" href="{% url 'change-pass' %}"><i class="fas fa-trash-alt"></i> Delete</a>    
+                          <a class="btn btn-sm btn-primary" href="{% url 'add-student' %}"><i class="far fa-edit"></i>Edit</a>
+                          <a class="btn btn-sm btn-danger" href="{% url 'delete-student' request.user.id %}"><i class="fas fa-trash-alt"></i> Delete</a>    
                       </td>
                       <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
                     </tr>
