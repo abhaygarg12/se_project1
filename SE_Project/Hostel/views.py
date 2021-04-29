@@ -133,10 +133,14 @@ def update_details(request):
     context={'student':student}
     return render(request, 'Hostel/update_details.html', context)
 
+'''@login_required(login_url='user-login')
+@home_pages
+def user_home(request):
+    pass'''
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['student'])
-def user_home(request):
+def student_home(request):
     user = User.objects.get(username=request.user)
     student = Student.objects.get(user = user)
 
@@ -144,6 +148,27 @@ def user_home(request):
     context={'complaints':complaints,}
     return render(request, 'Hostel/home.html', context)
 
+@login_required(login_url='user-login')
+@allowed_users(allowed_roles=['caretaker'])
+def caretaker_home(request):
+    pass
+
+@login_required(login_url='user-login')
+@allowed_users(allowed_roles=['warden'])
+def warden_home(request):
+    pass
+
+@login_required(login_url='user-login')
+#@allowed_users(allowed_roles=['caretaker', 'warden'])
+def delete_student(request, pk):
+    '''student = Student.objects.get(id=pk)
+    user = User.objects.get(username=student.user.username)'''
+    user = User.objects.get(id=pk)
+    student = Student.objects.get(user=user)
+    student.delete()
+    user.delete()
+    messages.info(request, 'Student deleted')
+    return redirect('Hostel-home')
 
 @login_required(login_url='user-login')
 def new_complaint(request):
@@ -157,6 +182,7 @@ def new_complaint(request):
 
     context = {'form': form}
     return render(request, 'Hostel/Addnewcomplaint.html', context)
+
 
 
 '''
