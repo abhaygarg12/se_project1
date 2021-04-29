@@ -74,7 +74,7 @@ def logout_user(request):
     logout(request)
     return redirect('user-login')
 
-@login_required
+@login_required(login_url='user-login')
 def change_pass(request):
     
     if request.method == "POST":
@@ -85,8 +85,9 @@ def change_pass(request):
         user = User.objects.get(username=request.user)
         if user.check_password(password):
             if password1 == password2:
-                user.set_password(password)
+                user.set_password(password1)
                 user.save()
+                login(request, user)
                 return redirect('Hostel-home')
             else:
                 messages.error(request, "Passwords do not match")
@@ -96,6 +97,42 @@ def change_pass(request):
             return redirect('change-pass')
 
     return render(request, 'Hostel/change_pass.html')
+
+@login_required(login_url='user-login')
+@allowed_users(allowed_roles=['student'])
+def update_details(request):
+    user = User.objects.get(username=request.user)
+    student = Student.objects.get(user = user)
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        room_no = request.POST.get("room_no")
+        mobile = request.POST.get("mobile")
+        password = request.POST.get("password")
+
+        if user.check_password(password):
+            user.username = username
+            user.first_name = first_name
+            user.last_name = last_name
+            student.mobile = mobile
+            user.email = email
+            student.room_no = room_no
+            user.save()
+            student.save()
+            login(request, user)
+            return redirect('Hostel-home')
+            messages.info(request, "User details updated")
+
+        else:
+            messages.error(request, "Enter the correct password to update details")
+            return redirect('update-datails')
+        
+    context={'student':student}
+    return render(request, 'Hostel/update_details.html', context)
+
 
 @login_required(login_url='user-login')
 def home(request):
@@ -131,25 +168,4 @@ def new_complaint(request, pk):
 			return redirect('home/')
 
 	context = {'form':form}
-	return render(request, 'Hostel/new_complaint.html', context)
-    
-    
-def register(request):
-    
-    form = RegisterStudentForm()
-
-    if request.method == "POST":
-        form = RegisterStudentForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + username)
-
-            group = Group.objects.get(name = "student")
-            user.groups.add(group)
-
-            return redirect('student-details')
-            #return redirect('Hostel-home')
-    
-    context = {'form':form}
-    return render(request, 'Hostel/register_form.html')'''
+	return render(request, 'Hostel/new_complaint.html', context)'''

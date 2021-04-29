@@ -30,9 +30,11 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li> -->
+                    <li class="nav-item">
+                      {% for message in messages %}
+                          <p id="messages">{{message}}</p>
+                      {% endfor %}
+                    </li>
                   </ul>
                   <span>Hello, {{ request.user.username }}    </span>
                   <a href="{% url 'user-logout' %}" class="btn btn-outline-primary my-2 my-sm-0 ml-2" >Logout</a>
@@ -51,7 +53,7 @@
         </div>
           <div class="card">
               <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
-              <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" ><i class="fas fa-plus"></i> Add a new Complaint</button>
+              <a id="add__new__list" href="{% url 'new-complaint' %}" class="btn btn-success position-absolute" ><i class="fas fa-plus"></i> Add a new Complaint</a>
               <table class="table table-hover">
                   <thead>
                     <tr>
@@ -69,8 +71,8 @@
                       <td>{{complaint.title}}</td>
                       <td>{{complaint.location}}</td>
                       <td>
-                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i>Edit</a>
-                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                          <a class="btn btn-sm btn-primary" href="{% url 'update-datails' %}"><i class="far fa-edit"></i>Edit</a>
+                          <a class="btn btn-sm btn-danger" href="{% url 'change-pass' %}"><i class="fas fa-trash-alt"></i> Delete</a>    
                       </td>
                       <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
                     </tr>
