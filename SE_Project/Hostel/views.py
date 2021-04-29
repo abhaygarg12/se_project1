@@ -135,8 +135,12 @@ def update_details(request):
 
 
 @login_required(login_url='user-login')
-def home(request):
-    complaints = Complaint.objects.all()
+@allowed_users(allowed_roles=['student'])
+def user_home(request):
+    user = User.objects.get(username=request.user)
+    student = Student.objects.get(user = user)
+
+    complaints = Complaint.objects.filter(name = student)
     context={'complaints':complaints}
     return render(request, 'Hostel/home.html', context)
 

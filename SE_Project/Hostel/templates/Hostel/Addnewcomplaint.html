@@ -135,6 +135,9 @@
                  <div class="form-group text-center">
                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
                 </div>
+                {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                {% endfor %}
               </form>
           </div>
           </div>

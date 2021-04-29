@@ -9,7 +9,7 @@ class Student(models.Model):
     room_no = models.CharField(max_length=5)
 
     def __str__(self):
-        return str(self.user.first_name)
+        return str(self.user.username)
 
 
 class Complaint(models.Model):
