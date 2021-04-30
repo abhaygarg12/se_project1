@@ -15,7 +15,7 @@
         <hr> -->
         <div class="card bg-light">
         <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <h4 class="card-title mt-3 text-center">Add Student</h4>
             <br>
             
             <!-- <p class="text-center">Get started with your free account</p> -->
@@ -80,7 +80,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input name="password2" class="form-control" placeholder="Confirm password" type="password">
+                <input name="password2" class="form-control" placeholder="Repeat password" type="password">
             </div> <!-- form-group// -->
 
             {% for message in messages %}
@@ -88,9 +88,8 @@
             {% endfor %}
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                <button type="submit" class="btn btn-primary btn-block"> Add Student  </button>
             </div> <!-- form-group// -->      
-            <p class="text-center">Have an account? <a href="{% url 'user-login' %}">Log In</a> </p>    
 
         </form>
         </article>
