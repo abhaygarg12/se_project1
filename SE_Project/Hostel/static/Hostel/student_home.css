@@ -1,0 +1,41 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
+
+.hm-gradient {
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
+}
+.darken-grey-text {
+  color: #2e2e2e;
+}
+
+.navbar .dropdown-menu a:hover {
+  color: #616161 !important;
+}
+.darken-grey-text {
+  color: #2e2e2e;
+}
+body {
+  background-image: url();
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+footer {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+/* .bg__card__navbar {
+  background-color: #000000;
+} */
+.bg__card__footer {
+  background-color: #000000 !important;
+}
+#add__new__list {
+  top: -38px;
+  right: 0px;
+}
