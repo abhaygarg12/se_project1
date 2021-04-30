@@ -28,6 +28,17 @@ class Complaint(models.Model):
     def __str__(self):
         return self.title
 
+class Caretaker(models.Model):
+    POST = {
+			('Caretaker', 'Caretaker'),
+			('Warden', 'Warden'),
+    }
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.CharField(max_length=10)
+    post = models.CharField(max_length=10, choices=POST, default='Caretaker')
+    def __str__(self):
+        return str(self.user.username)
  
      
     
