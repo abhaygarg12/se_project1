@@ -139,7 +139,8 @@ def student_home(request):
     user = User.objects.get(username=request.user)
     student = Student.objects.get(user = user)
     complaints = Complaint.objects.filter(name = student)
-    context={'complaints':complaints}
+    x = 1
+    context={'complaints':complaints, 'x':x}
     return render(request, 'Hostel/student_home.html', context)
 
 @login_required(login_url='user-login')
