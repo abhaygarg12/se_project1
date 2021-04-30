@@ -23,7 +23,7 @@ class Complaint(models.Model):
     description = models.CharField(max_length=150)
     date_created = models.DateField(auto_now_add=True)
     location = models.CharField(max_length=20)
-    status = models.CharField(max_length=20, choices=STATUS)
+    status = models.CharField(max_length=20, choices=STATUS, default='Pending')
 
     def __str__(self):
         return self.title
