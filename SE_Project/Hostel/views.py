@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from .forms import *
+from .forms import ComplaintForm
 
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -202,18 +203,7 @@ def add_student(request):
 
     return render(request, 'Hostel/add_student.html')
 
-@login_required(login_url='user-login')
-def new_complaint(request):
-    form = ComplaintForm()
-
-    if request.method == "POST":
-        form = ComplaintForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('Hostel-home')
-
-    context = {'form': form}
-    return render(request, 'Hostel/Addnewcomplaint.html', context)
+ 
 
 @login_required(login_url='user-login')
 #@allowed_users(allowed_roles=['warden'])
@@ -237,3 +227,52 @@ def remove_caretaker(request, pk):
         #return redirect('Hostel-home')
         return redirect('user-login')
     return render(request, 'Hostel/remove_caretaker.html')
+
+ 
+
+
+
+
+
+
+def add_complaint(request):
+	form = ComplaintForm()
+	if request.method == 'POST':
+		#print('Printing POST:', request.POST)
+		form = ComplaintForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context = {'form':form} 
+	return render(request, 'Hostel/Addnewcomplaint.html', context)
+
+ def update_complaint(request, pk):
+
+    complaint= Complaint.objects.get(id=pk)
+	form = ComplaintForm(instance=complaint)
+
+	if request.method == 'POST':
+		form = ComplaintForm(request.POST, instance=complaint)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context = {'form':form}
+	return render(request, 'Hostel/Addnewcomplaint.html', context)
+
+      
+
+def delete_complaint(request, pk):
+	complaint= Complaint.objects.get(id=pk)
+	    
+    if request.method == "POST":
+		complaint.delete()
+		return redirect('/')
+
+    context = {'item':complaint}
+    return render(request, 'Hostel/Addnewcomplaint.html', context)
+
+
+
+
