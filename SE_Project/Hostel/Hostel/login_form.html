@@ -20,16 +20,18 @@
             <form method="POST" action="">
                 {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" name="username" class="form-control" placeholder="Your Roll number" value="" />
+                    <input type="text" name="username" class="form-control" placeholder="Your Username*" value="" />
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Your Password" value="" />
+                    <input type="password" name="password" class="form-control" placeholder="Your Password*" value="" />
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btnSubmit" value="Login" />
                 </div>
                 
-                
+                {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                {% endfor %}
                 
 
                 <div class="form-group">

@@ -23,33 +23,26 @@ def register(request):
         email = request.POST.get("email")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        roll_no = request.POST.get("roll_no")
         room_no = request.POST.get("room_no")
         mobile = request.POST.get("mobile")
         full_name = request.POST.get("full_name")
-        dob = request.POST.get("dob")
+
 
         if password1 == password2:
             if User.objects.filter(username=username).exists():
-                messages.error(request, "Username already registered")
+                messages.error(request, "Roll number already registered")
                 return redirect('user-register')
             elif User.objects.filter(email=email).exists():
                 messages.error(request, "Email already registered")
                 return redirect('user-register')
-            elif Student.objects.filter(roll_no=roll_no).exists():
-                messages.error(request, "Roll number already registered")
-                return redirect('user-register')
             else:
-                user = User.objects.create_user(
-                    username=username, email=email, password=password1)
+                user = User.objects.create_user(username=username, email=email, password=password1)
                 user.save()
                 messages.success(request, "Account created for " + username)
                 group = Group.objects.get(name="student")
                 user.groups.add(group)
 
-                student = Student.objects.create(
-                    user=user, full_name=full_name, room_no=room_no, roll_no=roll_no, mobile=mobile, dob=dob)
-                # student.save()
+                student = Student.objects.create(user=user, full_name=full_name, room_no=room_no, mobile=mobile)
 
                 return redirect('user-login')
         else:
