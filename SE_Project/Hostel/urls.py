@@ -19,20 +19,17 @@ urlpatterns = [
     path('add_student/',views.add_student, name='add-student'),
 
     path('add_caretaker/<str:pk>/', views.add_caretaker, name='add-caretaker'),
-    path('remove_caretaker/<str:pk>', views.remove_caretaker, name='remove-caretaker'),
+    path('remove_caretaker/<str:pk>/', views.remove_caretaker, name='remove-caretaker'),
 
-    path('new_complaint/', views.new_complaint, name='new-complaint'),
-
+   '''
+    path('add_complaint/', views.add_complaint, name='add_complaint'),
+    path('update_complaint/<str:pk>/', views.update_complaint, name='update_complaint'),
+    path('delete_complaint/<str:pk>/', views.delete_complaint, name="delete_order"),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),'''
  
 
-
 ]
-
-
-
-

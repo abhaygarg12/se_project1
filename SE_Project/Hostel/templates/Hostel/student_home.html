@@ -76,7 +76,7 @@
                           <a class="btn btn-sm btn-primary" href="{% url 'add-student' %}"><i class="far fa-edit"></i>Edit</a>
                           <a class="btn btn-sm btn-danger" href="{% url 'delete-student' request.user.id %}"><i class="fas fa-trash-alt"></i> Delete</a>    
                       </td>
-                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'update_complaint' complaint.id%}"><i class="fas fa-info-circle"></i> Details</a> </td>
                     </tr>
                   {% endfor %}
                   <!--
@@ -154,5 +154,4 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
 
