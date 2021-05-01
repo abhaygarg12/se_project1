@@ -28,7 +28,7 @@ class Complaint(models.Model):
     def __str__(self):
         return self.title
 
-class Caretaker(models.Model):
+class Admin(models.Model):
     POST = {
 			('Caretaker', 'Caretaker'),
 			('Warden', 'Warden'),

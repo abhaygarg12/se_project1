@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Hostel Complaint system</title>
-<link href="/static/Hostel/student_home.css" rel="stylesheet" >
+<link href="/static/Hostel/caretaker_home.css" rel="stylesheet" >
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
@@ -21,14 +21,20 @@
     <header>
         <div class="container">
           <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan">
-            <a class="navbar-brand font-bold" href="#">Home</a>
+            <a class="navbar-brand font-bold" href="{% url 'caretaker-home' %}">Home</a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'caretaker-students' %}">Students</a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"  id="open-popup-btn"><i class="fa fa-envelope"></i> Contact <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"  id="open-popup-btn"><i class="fa fa-envelope"></i> Contact </a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-gear"></i> Settings</a>
@@ -36,8 +42,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                          <a class="dropdown-item" href="#">Update Profile</a>
-                          <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="{% url 'change-pass' %}">Change Password</a>
                             <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
                         </div>
                     </li>
@@ -58,7 +63,7 @@
         </div>
           <div class="card">
               <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
-              <a id="add__new__list" href="{% url 'add-complaint' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Complaint</a>
+              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Student</a>
               
             
               <div class="fixedTableHead">
@@ -66,26 +71,20 @@
                   <thead >
                     <tr>
                       <th scope="col">S.No</th>
-                      <th scope="col">Complaint title</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Edit Complaint </th>
-                      <th scope="col">Complaint  info</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Roll Number</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Room Number</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for complaint in complaints%}
                     <tr>
-                      <th scope="row">{{complaint.id}}</th>
-                      <td>{{complaint.title}}</td>
-                      <td>{{complaint.location}}</td>
-                      <td>{{complaint.status}}</td>
-                      <td>
-                          <a class="btn btn-sm btn-primary" href="{% url 'update-complaint' complaint.id %}"><i class="fa fa-edit"></i>Edit</a>
-                          <a class="btn btn-sm btn-danger" href="{% url 'delete-complaint' complaint.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Delete</a>    
-                      </td>
-                      <td><a class="btn btn-sm btn-info" href="{% url 'set-status' complaint.id %}"><i class="fa fa-info-circle"></i> Details</a> </td>
-                    </tr>
+                      <th scope="row">{{student.id}}</th>
+                      <td>{{student.user.get_full_name}}</td>
+                      <td>{{student.user.username}}</td>
+                      <td>{{student.user.email}}</td>
+                      <td>{{student.room_no}}</td>
                   {% endfor %}
                   <!--
                     <tr>

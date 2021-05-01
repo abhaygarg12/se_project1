@@ -3,19 +3,26 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    #path('', views.user_home, name='Hostel-home'),
-    path('', views.student_home, name='Hostel-home'),
+    path('', views.user_home, name='Hostel-home'),
     path('student_home/', views.student_home, name='student-home'),
+
     path('caretaker_home/', views.caretaker_home, name='caretaker-home'),
+    path('caretaker_home/students', views.caretaker_students, name='caretaker-students'),
+
     path('warden_home', views.warden_home, name='warden-home'),
+    path('warden_home/students', views.warden_students, name='warden-students'),
+    path('warden_home/caretakers', views.warden_caretakers, name='warden-caretakers'),
+    path('warden_home/add_caretaker', views.warden_addcaretaker, name='warden-addcaretaker'),
 
     path('login/', views.login_user, name='user-login'),
     path('logout/', views.logout_user, name='user-logout'),
-    path('register/', views.register, name='user-register'),
+    path('register/student', views.register_student, name='user-register'),
+    path('register/caretaker', views.register_caretaker, name='caretaker-register'),
 
     path('update_details/', views.update_details, name='update-datails'),
     path('change_pass/', views.change_pass, name='change-pass'),
     path('delete_student/<str:pk>/', views.delete_student, name='delete-student'),
+    path('student_pages/', views.student_page, name='student-pages'),    
     path('add_student/', views.add_student, name='add-student'),
 
     path('add_caretaker/<str:pk>/', views.add_caretaker, name='add-caretaker'),
@@ -37,7 +44,5 @@ urlpatterns = [
          name="password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
-
-
 
 ]
