@@ -2,15 +2,16 @@
 <html>
 <head>
 <title>Hostel Complaint system</title>
-<link href="/static/Hostel/add_complaint.css" rel="stylesheet" >
-
+<link href="/static/Hostel/warden_homect.css" rel="stylesheet" >
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
 <!-- jQuery library -->
 
 
-<!-- Latest compiled JavaScript --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -20,14 +21,14 @@
     <header>
         <div class="container">
           <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan">
-            <a class="navbar-brand font-bold" href="#">Navbar</a>
+            <a class="navbar-brand font-bold" href="#">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contact <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"  id="open-popup-btn"><i class="fa fa-envelope"></i> Contact <span class="sr-only">(current)</span></a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-gear"></i> Settings</a>
@@ -35,8 +36,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                          <a class="dropdown-item" href="#">Update Profile</a>
-                          <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="#">Update Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
                         </div>
                     </li>
@@ -50,37 +51,47 @@
       <!---->
       <main>
       <div class="container my-5">
-             <!-- <div class="card-body text-center">
-          <h4 class="card-title">Student Complaint system</h4>
+             <div class="card-body text-center">
+          <div><h4 class="card-title">Student Complaint system</h4>
+          </div>
           
-        </div> -->
-          <!-- <div class="card">
-              <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button>
-              <table class="table table-hover">
-                  <thead>
+        </div>
+          <div class="card">
+              <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
+              <a id="add__new__list" href="{% url 'add-complaint' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Complaint</a>
+              
+            
+              <div class="fixedTableHead">
+                <table class="table table-hover" >
+                  <thead >
                     <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Complaint type</th>
+                      <th scope="col">S.No</th>
+                      <th scope="col">Complaint title</th>
                       <th scope="col">Location</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Edit Complaint </th>
                       <th scope="col">Complaint  info</th>
                     </tr>
                   </thead>
                   <tbody>
+                  {% for complaint in complaints%}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
+                      <th scope="row">{{complaint.id}}</th>
+                      <td>{{complaint.title}}</td>
+                      <td>{{complaint.location}}</td>
+                      <td>{{complaint.status}}</td>
                       <td>
-                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
-                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                          <a class="btn btn-sm btn-primary" href="{% url 'update-complaint' complaint.id %}"><i class="fa fa-edit"></i>Edit</a>
+                          <a class="btn btn-sm btn-danger" href="{% url 'delete-complaint' complaint.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Delete</a>    
                       </td>
-                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'set-status' complaint.id %}"><i class="fa fa-info-circle"></i> Details</a> </td>
                     </tr>
+                  {% endfor %}
+                  <!--
                     <tr>
                       <th scope="row">2</th>
                       <td>Jacob</td>
-                      <td>Thornton</td>
+                      <td>{product.name}</td>
                       <td>
                           <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
                           <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
@@ -96,59 +107,46 @@
                       </td>
                       <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
                     </tr>
+                    -->
                   </tbody>
                 </table>
-          </div> -->
+          </div>
+          </div>
           <!-- Large modal -->
 
 
-      <!-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"> -->
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
                 <div class="card-body text-center">
                   <h4 class="card-title">Add a new Complaint</h4>
                 </div>
                   <div class=" card col-8 offset-2 my-2 p-3">
-                <form method="POST" action=""> 
-                  {% csrf_token %}
+                <form>
                   <div class="form-group">
-                    <label for="listname">Title</label>
-                    <input type="text" class="form-control" name="title" id="listname" placeholder="Enter title">
+                    <label for="listname">Complaint type</label>
+                    <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
                   </div>
                   <div class="form-group">
-                    <label for="datepicker">Location</label>
-                    <input  type="text" class="form-control" name="location" id="datepicker" placeholder="enter the location">
+                    <label for="datepicker">Deadline</label>
+                    <input  type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Pick up a date">
                   </div>
                   <div class="form-group">
                                           <label for="datepicker">Add description</label>
                       <div class="input-group">
       
-                        <input type="text" name="description" class="form-control" placeholder="Add an item" aria-label="Search for...">
+                        <input type="text" class="form-control" placeholder="Add an item" aria-label="Search for...">
                         
                       </div>
                     </div>
-                    <!--<div class="form-group">
-                      <label for="datepicker">Status</label>
-                  <div class="input-group">
-
-                    <select class="form-control">
-                      <option class="form-control">Pending</option>
-                      <option class="form-control">Completed</option>
-                    </select>
-                    
-                  </div>
-                </div>-->
                  <div class="form-group text-center">
                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
                 </div>
-                <!-- {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                {% endfor %} -->
               </form>
           </div>
           </div>
-        <!-- </div>
-      </div> -->
+        </div>
+      </div>
       </div>
       </main>
       <!---->
@@ -159,11 +157,36 @@
       
           </div>
       </footer>
+      <div class="popup center">
+        <div class="icon" >
+          <i class="fa fa-check"></i>
+        </div>
+        <div class="title">
+          Success!!
+        </div>
+        <div class="description">
+          Sure you want to delete??
+        </div>
+        <div class="dismiss-btn">
+          <a id="dismiss-popup-btn">
+            Dismiss
+          </a>
+        </div>
+      </div>
+
+<script>
+ document.getElementById("open-popup-btn").addEventListener("click",function(){
+  document.getElementsByClassName("popup")[0].classList.add("active");
+});
+ 
+document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
+  document.getElementsByClassName("popup")[0].classList.remove("active");
+});
+</script>
 
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
 

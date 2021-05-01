@@ -36,12 +36,14 @@ def register(request):
                 messages.error(request, "Email already registered")
                 return redirect('user-register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
+                user = User.objects.create_user(
+                    username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
                 user.save()
                 messages.success(request, "Account created for " + username)
                 group = Group.objects.get(name="student")
                 user.groups.add(group)
-                student = Student.objects.create(user=user, room_no=room_no, mobile=mobile)
+                student = Student.objects.create(
+                    user=user, room_no=room_no, mobile=mobile)
                 return redirect('user-login')
         else:
             messages.error(request, "Passwords do not match")
@@ -109,7 +111,8 @@ def user_home(request):
 def student_home(request):
     user = User.objects.get(username=request.user)
     student = Student.objects.get(user=user)
-    complaints = Complaint.objects.filter(name=student).order_by('-date_created')
+    complaints = Complaint.objects.filter(
+        name=student).order_by('-date_created')
     context = {'complaints': complaints}
     return render(request, 'Hostel/student_home.html', context)
 
@@ -119,12 +122,14 @@ def student_home(request):
 def caretaker_home(request):
     complaints = Complaint.objects.all().order_by('-date_created')
     context = {'complaints': complaints}
-    return render(request, 'Hostel/student_home.html', context)
+    return render(request, 'Hostel/caretaker_home.html', context)
+
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_home(request):
     pass
+
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['student'])
@@ -161,6 +166,7 @@ def update_details(request):
 
     context = {'student': student}
     return render(request, 'Hostel/update_details.html', context)
+
 
 @login_required(login_url='user-login')
 # @allowed_users(allowed_roles=['caretaker', 'warden'])
@@ -227,6 +233,7 @@ def add_caretaker(request, pk):
     return redirect('caretaker-home')
     # return redirect('Hostel-home')
 
+
 @login_required(login_url='user-login')
 # @allowed_users(allowed_roles=['warden'])
 def remove_caretaker(request, pk):
@@ -236,6 +243,7 @@ def remove_caretaker(request, pk):
         # return redirect('Hostel-home')
         return redirect('user-login')
     return render(request, 'Hostel/remove_caretaker.html')
+
 
 @login_required(login_url='user-login')
 def add_complaint(request):
@@ -247,16 +255,18 @@ def add_complaint(request):
         description = request.POST.get("description")
         location = request.POST.get("location")
 
-        complaint = Complaint.objects.create(title=title, description=description, location=location, name=name)
+        complaint = Complaint.objects.create(
+            title=title, description=description, location=location, name=name)
         return redirect('Hostel-home')
     return render(request, 'Hostel/add_complaint.html')
+
 
 @login_required(login_url='user-login')
 def update_complaint(request, pk):
 
     complaint = Complaint.objects.get(id=pk)
     if request.method == 'POST':
-        
+
         title = request.POST.get("title")
         description = request.POST.get("description")
         location = request.POST.get("location")
@@ -265,18 +275,20 @@ def update_complaint(request, pk):
         complaint.location = location
         complaint.save()
 
-    context={'complaint':complaint}
+    context = {'complaint': complaint}
     return render(request, 'Hostel/update_complaint.html', context)
 
+
 @login_required(login_url='user-login')
-def delete_complaint(request, pk):  
+def delete_complaint(request, pk):
     complaint = Complaint.objects.get(id=pk)
     complaint.delete()
     messages.info(request, 'Complaint deleted')
     return redirect('Hostel-home')
 
+
 @login_required(login_url='user-login')
-#@allowed_users(allowed_roles=['warden','caretaker'])
+# @allowed_users(allowed_roles=['warden','caretaker'])
 def set_status(request, pk):
     complaint = Complaint.objects.get(id=pk)
     if complaint.status == 'Pending':
@@ -286,4 +298,3 @@ def set_status(request, pk):
 
     complaint.save()
     return redirect('Hostel-home')
-
