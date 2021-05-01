@@ -29,9 +29,6 @@
                     <input type="submit" class="btnSubmit" value="Login" />
                 </div>
                 
-                
-                
-
                 <div class="form-group">
                     <a href="{% url 'reset_password' %}" class="ForgetPwd">Forget Password?</a>
                 </div>
@@ -66,8 +63,33 @@
         </div>
     </div>
 </div>
-
-
+<div class="popup center">
+    <div class="icon">
+      <i class="fa fa-check"></i>
+    </div>
+    <div class="title">
+    {% for message in messages %}
+       {{message}}
+    {% endfor %}
+    </div>
+    <!-- <div class="description">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil provident voluptatem nulla placeat
+    </div> -->
+    <div class="dismiss-btn">
+      <button id="dismiss-popup-btn">
+        Dismiss
+      </button>
+    </div>
+  </div>
+  <script>
+    document.getElementById("open-popup-btn").addEventListener("click",function(){
+     document.getElementsByClassName("popup")[0].classList.add("active");
+   });
+    
+   document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
+     document.getElementsByClassName("popup")[0].classList.remove("active");
+   });
+   </script>
 
 </body>
 </html>
