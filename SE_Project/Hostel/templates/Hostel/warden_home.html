@@ -18,20 +18,23 @@
 <body>
   
         
-    <header>
+<header>
         <div class="container">
           <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan">
-            <a class="navbar-brand font-bold" href="#">Home</a>
+            <a class="navbar-brand font-bold" href="{% url 'warden-home'%}">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Students</a>
+                        <a href="{% url 'warden-students' %}" class="nav-link" href="#">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Caretaker</a>
+                        <a href="{% url 'warden-caretakers' %}" class="nav-link" href="#">Caretaker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'warden-addcaretaker' %}" class="nav-link" href="#">Add Caretaker</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -44,8 +47,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                            <a class="dropdown-item" href="#">Update Profile</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="{% url 'change-pass' %}">Change Password</a>
                             <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
                         </div>
                     </li>
@@ -54,13 +56,12 @@
         </nav>
         </div>
       </header>
-        
      
       <!---->
       <main>
       <div class="container my-5">
              <div class="card-body text-center">
-          <div><h4 class="card-title">Student Complaint system</h4>
+          <div><h4 class="card-title">Student Complaints</h4>
           </div>
           
         </div>

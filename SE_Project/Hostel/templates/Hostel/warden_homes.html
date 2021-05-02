@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Hostel Complaint system</title>
-<link href="/static/Hostel/warden_homect.css" rel="stylesheet" >
+<link href="/static/Hostel/caretaker_home.css" rel="stylesheet" >
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
@@ -18,7 +18,7 @@
 <body>
   
         
-      <header>
+    <header>
         <div class="container">
           <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan">
             <a class="navbar-brand font-bold" href="{% url 'warden-home'%}">Home</a>
@@ -48,26 +48,27 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
                             <a class="dropdown-item" href="{% url 'change-pass' %}">Change Password</a>
-                            <a class="dropdown-item" href="{% url 'user-logout' %}">Log out</a>
+                            <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </nav>
         </div>
-      </header>
-           
+      </header>  
      
       <!---->
       <main>
       <div class="container my-5">
              <div class="card-body text-center">
-          <div><h4 class="card-title"> Caretakers </h4>
+          <div><h4 class="card-title">Students</h4>
           </div>
           
         </div>
           <div class="card">
               <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
+              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Student</a>
+              
             
               <div class="fixedTableHead">
                 <table class="table table-hover" >
@@ -75,26 +76,53 @@
                     <tr>
                       <th scope="col">S.No</th>
                       <th scope="col">Name</th>
+                      <th scope="col">Roll Number</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Mobile</th>
-                      <th scope="col">Remove Caretaker</th>
+                      <th scope="col">Room Number</th>
+                      <th scope="col">Remove Student</th>
                     </tr>
                   </thead>
                   <tbody>
-                  {% for caretaker in caretakers %}
+                  {% for student in students %}
                     <tr>
-                      <th scope="row">{{caretaker.id}}</th>
-                      <td>{{caretaker.user.get_full_name}}</td>
-                      <td>{{caretaker.user.username}}</td>
-                      <td>{{caretaker.mobile}}</td>
+                      <th scope="row">{{student.id}}</th>
+                      <td>{{student.user.get_full_name}}</td>
+                      <td>{{student.user.username}}</td>
+                      <td>{{student.user.email}}</td>
+                      <td>{{student.room_no}}</td>
                       <td>
-                          <a class="btn btn-sm btn-danger" href="{% url 'remove-caretaker' caretaker.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove as Caretaker</a>    
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete-student' student.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove</a>
                       </td>
-                    </tr>
                   {% endfor %}
+                  <!--
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>{product.name}</td>
+                      <td>
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>       
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> delete</a> 
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    -->
+                  </tbody>
+                </table>
+          </div>
+          </div>
+          <!-- Large modal -->
 
 
-      {% comment %} <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
                 <div class="card-body text-center">
@@ -127,7 +155,7 @@
         </div>
       </div>
       </div>
-      </main> {% endcomment %}
+      </main>
       <!---->
       
       <!---->

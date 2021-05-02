@@ -44,5 +44,21 @@ def home_pages(view_func):
 				return redirect('caretaker-home')
 
 		else:
-			return HttpResponse('Please register yourself to access this page')
+			return HttpResponse('Your application will be reviewed by the warden')
+	return wrapper_function
+
+
+def student_pages(view_func):
+	def wrapper_function(request, *args, **kwargs):
+		group = None
+		if request.user.groups.exists():
+			group = request.user.groups.all()[0].name
+			if group == 'warden':
+				return redirect('warden-students')
+
+			elif group == 'caretaker':
+				return redirect('caretaker-students')
+
+		else:
+			return HttpResponse('Your application will be reviewed by the warden')
 	return wrapper_function
