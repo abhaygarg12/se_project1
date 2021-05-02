@@ -1,5 +1,45 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
+
+.hm-gradient {
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
+}
+.darken-grey-text {
+  color: #2e2e2e;
+}
+
+.navbar .dropdown-menu a:hover {
+  color: #616161 !important;
+}
+.darken-grey-text {
+  color: #2e2e2e;
+}
+body {
+  background-image: url();
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+footer {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+/* .bg__card__navbar {
+  background-color: #000000;
+} */
+.bg__card__footer {
+  background-color: #000000 !important;
+}
+#add__new__list {
+  right: 0px;
+  margin-top: -65px;
+}
+
 .center {
   position: absolute;
   top: 50%;
@@ -27,21 +67,23 @@
   transform: translate(-50%, -50%) scale(1);
   transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
 }
-.popup .icon {
-  margin: 5px 0px;
+
+.icon {
+  margin: 10px 100px 0px;
   width: 50px;
   height: 50px;
-  border: 2px solid #34f234;
+  border: 2px solid #db0f0f;
   text-align: center;
   display: inline-block;
   border-radius: 50%;
   line-height: 60px;
 }
-.popup .icon i.fa {
+.icon i.fa {
   font-size: 30px;
-  color: #34f234;
+  color: #db0f0f;
 }
-.popup .title {
+
+/* .popup .title {
   margin: 5px 0px;
   font-size: 30px;
   font-weight: 600;
@@ -90,59 +132,4 @@
 }
 .popup.active .dismiss-btn {
   transition: all 300ms ease-in-out 400ms;
-}
-
-.hm-gradient {
-  background-image: linear-gradient(
-    to top,
-    #f3e7e9 0%,
-    #e3eeff 99%,
-    #e3eeff 100%
-  );
-}
-.darken-grey-text {
-  color: #2e2e2e;
-}
-
-.navbar .dropdown-menu a:hover {
-  color: #616161 !important;
-}
-.darken-grey-text {
-  color: #2e2e2e;
-}
-body {
-  background-image: url();
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-footer {
-  margin-top: 20px;
-  padding-top: 20px;
-}
-/* .bg__card__navbar {
-  background-color: #000000;
 } */
-.bg__card__footer {
-  background-color: #000000 !important;
-}
-#add__new__list {
-  right: 0px;
-  margin-top: -65px;
-}
-.fixTableHead {
-  overflow: auto;
-  height: 50px;
-}
-.fixTableHead thead th {
-  position: sticky;
-  top: 0;
-}
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-th,
-td {
-  padding: 8px 15px;
-}

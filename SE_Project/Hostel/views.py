@@ -128,9 +128,9 @@ def student_home(request):
 
 
 @login_required(login_url='user-login')
-@allowed_users(allowed_roles=['caretaker'])
+# @allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
-    complaints = Complaint.objects.all().order_by('-date_created')
+    complaints = Complaint.objects.all().order_by('date_created')
     context = {'complaints': complaints}
     return render(request, 'Hostel/caretaker_home.html', context)
 
@@ -356,7 +356,7 @@ def delete_complaint(request, pk):
 
 
 @login_required(login_url='user-login')
-# @allowed_users(allowed_roles=['warden','caretaker'])
+@allowed_users(allowed_roles=['warden','caretaker'])
 def set_status(request, pk):
     complaint = Complaint.objects.get(id=pk)
     if complaint.status == 'Pending':
