@@ -127,7 +127,7 @@ def student_home(request):
     complaints = Complaint.objects.filter(
         name=student).order_by('-date_created')
     context = {'complaints': complaints}
-    return render(request, 'Hostel/contactus.html', context)
+    return render(request, 'Hostel/student_home.html', context)
 
 
 @login_required(login_url='user-login')

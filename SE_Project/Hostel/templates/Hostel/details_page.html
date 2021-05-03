@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hostel Complaint system</title>
+<link href="/static/Hostel/add_complaint.css" rel="stylesheet" >
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+  
+        
+    <header>
+        <div class="container">
+          <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan">
+            <a class="navbar-brand font-bold" href="{% url 'Hostel-home'%}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contact </a>
+                    </li>
+                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                          <a class="dropdown-item" href="{% url 'update-details' %}">Update Profile</a>
+                          <a class="dropdown-item" href="{% url 'change-pass' %}">Change Password</a>
+                            <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+      </header>
+        
+     
+      <!---->
+      <main>
+      <div class="container my-5">
+            
+          <div class="modal-content">
+                <div class="card-body text-center">
+                  <h4 class="card-title">Details of the Complaint</h4>
+                </div>
+                  <div class=" card col-8 offset-2 my-2 p-3">
+                <form > 
+                  {% csrf_token %}
+                  <div class="form-group" style="text-align:center;">
+                   <h4>Title</h4>
+                    <h6>Yelpcamp Details</h6>
+                  </div>
+                  <hr>
+                  <div class="form-group" style="text-align:center;">
+                    <h4>By Whom</h4>
+                     <h6>harsh</h6>
+                   </div>
+                   <hr>
+                  <div class="form-group" style="text-align:center;">
+                    <h4>Location</h4>
+                     <h6>b-303</h6>
+                   </div>
+                   <hr>
+                   
+                   <div class="form-group" style="text-align:center;">
+                    <h4>Date</h4>
+                     <h6>03-05-2021</h6>
+                   </div>
+                   <hr>
+                   <div class="form-group" style="text-align:center;">
+                    <h4>Description</h4>
+                     <h6>this is a beautifull this is a beautifull car and more more this is a beautifull car and more morethis is a beautifull car and more more this is a beautifull car and more morecar and more more this is a beautifull car and more morethis is a beautifull car and more more this is a beautifull car and more more</h6>
+                   </div>
+              </form>
+          </div>
+          </div>
+      </div>
+      </main>
+      <!---->
+      
+      <!---->
+      <footer >
+        <div class="container bg-info p-5">
+      
+          </div>
+      </footer>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
