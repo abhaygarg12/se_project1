@@ -36,9 +36,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{request.user.get_full_name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                          <a class="dropdown-item"  href="{% url 'update-details' %}">Update Profile</a>
                           <a class="dropdown-item" href="{% url 'change-pass' %}">Change Password</a>
-                            <a class="dropdown-item" href="{% url 'user-logout' %}"">Log out</a>
+                            <a class="dropdown-item" href="{% url 'user-logout' %}">Log out</a>
                         </div>
                     </li>
                 </ul>
@@ -47,58 +46,41 @@
         </div>
       </header>
         
-     
-      <!---->
       <main>
       <div class="container my-5">
              <div class="card-body text-center">
-          <div><h4 class="card-title">Student Complaint system</h4>
+          <div><h4 class="card-title">Hostel Caretakers</h4>
           </div>
           
         </div>
-          <div class="card">
-              <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
-              <a id="add__new__list" href="{% url 'add-complaint' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Complaint</a>
-              
-            
+          <div class="card">            
               <div class="fixedTableHead">
                 <table class="table table-hover" >
-                  <thead >
-                    <tr>
-                      <th scope="col">S.No</th>
-                      <th scope="col">Complaint title</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Edit Complaint </th>
-                      <th scope="col" >Complaint  info</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {% for complaint in complaints%}
-                    <tr>
-                      <th scope="row">{{forloop.counter}}</th>
-                      <td>{{complaint.title}}</td>
-                      <td>{{complaint.location}}</td>
-                      <td>{{complaint.status}}</td>
-                      <td>
-                          <a class="btn btn-sm btn-primary" href="{% url 'update-complaint' complaint.id %}"><i class="fa fa-edit"></i>Edit</a>
-                          <a class="btn btn-sm btn-danger" href="{% url 'delete-complaint' complaint.id %}"  data-toggle="modal" data-target="#confirmDeleteModal" id="deleteButton{{complaint.id}}"> <i class="fa fa-trash"></i> Delete</a>
-                      </td>
-                      <td><a class="btn btn-sm btn-info" href="{% url 'set-status' complaint.id %}" ><i class="fa fa-info-circle"></i> Details</a> </td>
+                    <thead >
+                      <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for caretaker in caretakers %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{caretaker.user.get_full_name}}</td>
+                        <td>{{caretaker.user.username}}</td>
+                        <td>{{caretaker.mobile}}</td>                        
+                      </tr>
                       
-                    </tr>
-                    
-                  {% endfor %}
-                 
-                  </tbody>
-                </table>
+                    {% endfor %}
+                   
+                    </tbody>
+                  </table>
           </div>
           </div>
           <!-- Large modal -->
-
-
-      
-          </div>
+        </div>
       </main>
       <!---->
       
@@ -106,40 +88,28 @@
       <main>
         <div class="container my-5">
                <div class="card-body text-center">
-            <div><h4 class="card-title">Student Complaint system</h4>
+            <div><h4 class="card-title">Hostel Wardens</h4>
             </div>
             
           </div>
-            <div class="card">
-                <!-- <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus"></i> Add a new Complaint</button> -->
-                <a id="add__new__list" href="{% url 'add-complaint' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Complaint</a>
-                
-              
+            <div class="card">  
                 <div class="fixedTableHead">
                   <table class="table table-hover" >
                     <thead >
                       <tr>
                         <th scope="col">S.No</th>
-                        <th scope="col">Complaint title</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit Complaint </th>
-                        <th scope="col" >Complaint  info</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile Number</th>
                       </tr>
                     </thead>
                     <tbody>
-                    {% for complaint in complaints%}
+                    {% for warden in wardens %}
                       <tr>
                         <th scope="row">{{forloop.counter}}</th>
-                        <td>{{complaint.title}}</td>
-                        <td>{{complaint.location}}</td>
-                        <td>{{complaint.status}}</td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="{% url 'update-complaint' complaint.id %}"><i class="fa fa-edit"></i>Edit</a>
-                            <a class="btn btn-sm btn-danger" href="{% url 'delete-complaint' complaint.id %}"  data-toggle="modal" data-target="#confirmDeleteModal" id="deleteButton{{complaint.id}}"> <i class="fa fa-trash"></i> Delete</a>
-                        </td>
-                        <td><a class="btn btn-sm btn-info" href="{% url 'set-status' complaint.id %}" ><i class="fa fa-info-circle"></i> Details</a> </td>
-                        
+                        <td>{{warden.user.get_full_name}}</td>
+                        <td>{{warden.user.username}}</td>
+                        <td>{{warden.mobile}}</td>                        
                       </tr>
                       
                     {% endfor %}
@@ -148,16 +118,13 @@
                   </table>
             </div>
             </div>
-            <!-- Large modal -->
-  
-  
-        
+            <!-- Large modal -->       
             </div>
         </main>
      
       
       <footer >
-        <div class="container bg-info p-5">
+        <div class="container bg-cyan p-5">
      
          </div>
      </footer> 

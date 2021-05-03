@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect,render
 
 def unauthenticated_user(view_func):
 	def wrapper_func(request, *args, **kwargs):
@@ -21,10 +21,10 @@ def allowed_users(allowed_roles=[]):
 				if group in allowed_roles:
 					return view_func(request, *args, **kwargs)
 				else:
-					return HttpResponse('You are not authorized to view this page')
+					return render(request, 'Hostel/authorization.html')
 				
 			else:
-				return HttpResponse('You are not authorized to view this page')
+				return render(request, 'Hostel/authorization.html')
 		return wrapper_func
 	return decorator
 
@@ -44,7 +44,7 @@ def home_pages(view_func):
 				return redirect('caretaker-home')
 
 		else:
-			return HttpResponse('Your application will be reviewed by the warden')
+			return render(request, 'Hostel/application_review.html')
 	return wrapper_function
 
 
@@ -60,5 +60,5 @@ def student_pages(view_func):
 				return redirect('caretaker-students')
 
 		else:
-			return HttpResponse('Your application will be reviewed by the warden')
+			return render(request, 'Hostel/application_review.html')
 	return wrapper_function

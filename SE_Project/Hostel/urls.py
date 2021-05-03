@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.user_home, name='Hostel-home'),
     path('student_home/', views.student_home, name='student-home'),
+    path('student_home/contact', views.contact_page, name='contact-page'),
 
     path('caretaker_home/', views.caretaker_home, name='caretaker-home'),
     path('caretaker_home/students', views.caretaker_students,
@@ -34,10 +35,8 @@ urlpatterns = [
 
     # CRUD PART
     path('add_complaint/', views.add_complaint, name='add-complaint'),
-    path('update_complaint/<str:pk>/',
-         views.update_complaint, name='update-complaint'),
-    path('delete_complaint/<str:pk>/',
-         views.delete_complaint, name="delete-complaint"),
+    path('update_complaint/<str:pk>/', views.update_complaint, name='update-complaint'),
+    path('delete_complaint/<str:pk>/', views.delete_complaint, name="delete-complaint"),
     path('set_status/<str:pk>/', views.set_status, name='set-status'),
 
 
