@@ -60,5 +60,5 @@ def student_pages(view_func):
 				return redirect('caretaker-students')
 
 		else:
-			return render(request, 'Hostel/application_review.html')
+			return render(request, 'Hostel/authorization.html')
 	return wrapper_function

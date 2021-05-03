@@ -69,7 +69,7 @@
                       <tr>
                         <th scope="row">{{forloop.counter}}</th>
                         <td>{{caretaker.user.get_full_name}}</td>
-                        <td>{{caretaker.user.username}}</td>
+                        <td>{{caretaker.user.email}}</td>
                         <td>{{caretaker.mobile}}</td>                        
                       </tr>
                       
@@ -86,15 +86,15 @@
       
       <!---->
       <main>
-        <div class="container my-5">
-               <div class="card-body text-center">
-            <div><h4 class="card-title">Hostel Wardens</h4>
-            </div>
-            
+      <div class="container my-5">
+             <div class="card-body text-center">
+          <div><h4 class="card-title">Hostel Wardens</h4>
           </div>
-            <div class="card">  
-                <div class="fixedTableHead">
-                  <table class="table table-hover" >
+          
+        </div>
+          <div class="card">            
+              <div class="fixedTableHead">
+                <table class="table table-hover" >
                     <thead >
                       <tr>
                         <th scope="col">S.No</th>
@@ -108,7 +108,7 @@
                       <tr>
                         <th scope="row">{{forloop.counter}}</th>
                         <td>{{warden.user.get_full_name}}</td>
-                        <td>{{warden.user.username}}</td>
+                        <td>{{warden.user.email}}</td>
                         <td>{{warden.mobile}}</td>                        
                       </tr>
                       
@@ -116,11 +116,11 @@
                    
                     </tbody>
                   </table>
-            </div>
-            </div>
-            <!-- Large modal -->       
-            </div>
-        </main>
+          </div>
+          </div>
+          <!-- Large modal -->
+        </div>
+      </main>
      
       
       <footer >

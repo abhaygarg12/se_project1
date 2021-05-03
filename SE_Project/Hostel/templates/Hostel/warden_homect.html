@@ -91,7 +91,7 @@
                     <tr>
                       <th scope="row">{{forloop.counter}}</th>
                       <td>{{caretaker.user.get_full_name}}</td>
-                      <td>{{caretaker.user.username}}</td>
+                      <td>{{caretaker.user.email}}</td>
                       <td>{{caretaker.mobile}}</td>
                       <td>
                           <a class="btn btn-sm btn-danger" href="{% url 'remove-caretaker' caretaker.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove as Caretaker</a>    

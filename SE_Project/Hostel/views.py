@@ -124,11 +124,10 @@ def student_page(request):
 def student_home(request):
     user = User.objects.get(username=request.user)
     student = Student.objects.get(user=user)
-    complaints = Complaint.objects.filter(name=student).order_by('-date_created')
+    complaints = list(Complaint.objects.filter(name=student).order_by('date_created'))
+    complaints.reverse()
     context = {'complaints': complaints}
     return render(request, 'Hostel/student_home.html', context)
-<<<<<<< HEAD
-=======
 
 @login_required(login_url='user-login')
 def contact_page(request):
@@ -144,13 +143,13 @@ def contact_page(request):
     print(wardens)
     context={'caretakers':caretakers, 'wardens':wardens}
     return render(request, 'Hostel/contact_page.html', context)
->>>>>>> 2ef9f5928cf0701319e9c8f017e4203355aaa39c
 
 
 @login_required(login_url='user-login')
-# @allowed_users(allowed_roles=['caretaker'])
+@allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
-    complaints = Complaint.objects.all().order_by('date_created')
+    complaints = list(Complaint.objects.all().order_by('date_created'))
+    complaints.reverse()
     context = {'complaints': complaints}
     return render(request, 'Hostel/caretaker_home.html', context)
 
@@ -166,7 +165,8 @@ def caretaker_students(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_home(request):
-    complaints = Complaint.objects.all().order_by('-date_created')
+    complaints = list(Complaint.objects.all().order_by('date_created'))
+    complaints.reverse()
     context = {'complaints': complaints}
     return render(request, 'Hostel/warden_home.html', context)
 
@@ -188,7 +188,13 @@ def warden_addcaretaker(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_caretakers(request):
-    caretakers = Admin.objects.all().filter
+    admin = Admin.objects.all()
+    caretakers = []
+    for caretaker in admin:
+        if caretaker.user.groups.exists():
+            group = caretaker.user.groups.all()[0].name
+            if group == 'caretaker':
+                caretakers.append(caretaker)
     context = {'caretakers': caretakers}
     return render(request, 'Hostel/warden_homect.html', context)
 
@@ -231,7 +237,7 @@ def update_details(request):
 
         else:
             messages.error(request, "Enter the correct password to update details")
-            return redirect('update-datails')
+            return redirect('update-details')
 
     context = {'student': student}
     return render(request, 'Hostel/update_details.html', context)
@@ -340,7 +346,6 @@ def remove_caretaker(request, pk):
 
 @login_required(login_url='user-login')
 def add_complaint(request):
-
     if request.method == 'POST':
         user = request.user
         name = Student.objects.get(user=user)
@@ -381,6 +386,13 @@ def delete_complaint(request, pk):
         return redirect('Hostel-home')
     return render(request, 'Hostel/confirm_delete.html')
 
+@login_required(login_url='user-login')
+def complaint_details(request, pk):
+    complaint = Complaint.objects.get(id=pk)
+    if request.method == 'POST':
+        return redirect('Hostel-home')
+    context={'complaint':complaint}
+    return render(request, 'Hostel/complaint_details.html', context)
 
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden','caretaker'])

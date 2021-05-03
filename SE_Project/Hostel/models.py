@@ -19,10 +19,10 @@ class Complaint(models.Model):
     }
 
     name = models.ForeignKey(Student, on_delete = models.CASCADE)
-    title = models.CharField(max_length=30, default= "")
-    description = models.CharField(max_length=150)
+    title = models.CharField(max_length=50, default= "")
+    description = models.CharField(max_length=300)
     date_created = models.DateField(auto_now_add=True)
-    location = models.CharField(max_length=20)
+    location = models.CharField(max_length=30)
     status = models.CharField(max_length=20, choices=STATUS, default='Pending')
 
     def __str__(self):
