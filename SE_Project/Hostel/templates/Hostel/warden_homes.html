@@ -73,7 +73,7 @@
           
         </div>
           <div class="card">
-              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Student</a>\
+              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Student</a>
 
               <div class="fixedTableHead">
                 <table class="table table-hover" >
@@ -90,7 +90,7 @@
                   <tbody>
                   {% for student in students %}
                     <tr>
-                      <th scope="row">{{student.id}}</th>
+                      <th scope="row">{{forloop.counter}}</th>
                       <td>{{student.user.get_full_name}}</td>
                       <td>{{student.user.username}}</td>
                       <td>{{student.user.email}}</td>
