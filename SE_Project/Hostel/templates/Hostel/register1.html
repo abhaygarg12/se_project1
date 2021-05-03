@@ -1,0 +1,10 @@
+<h3> Enter details </h3>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    {{form.as_p}}
+
+    {{form.errors}}
+    <input type="submit" name="Create Student">
+</form>
