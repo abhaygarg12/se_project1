@@ -84,13 +84,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                  {% for complaint in complaints%}
+                  {% for student in students %}
                     <tr>
                       <th scope="row">{{forloop.counter}}</th>
                       <td>{{student.user.get_full_name}}</td>
                       <td>{{student.user.username}}</td>
                       <td>{{student.user.email}}</td>
                       <td>{{student.room_no}}</td>
+                      <td>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete-student' student.user.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove</a>
+                      </td>
                   {% endfor %}
                   </tbody>
                 </table>
