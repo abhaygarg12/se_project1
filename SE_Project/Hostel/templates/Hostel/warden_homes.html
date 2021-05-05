@@ -96,7 +96,7 @@
                       <td>{{student.user.email}}</td>
                       <td>{{student.room_no}}</td>
                       <td>
-                        <a class="btn btn-sm btn-danger" href="{% url 'delete-student' student.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete-student' student.user.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove</a>
                       </td>
                   {% endfor %}
                   <!--
@@ -132,7 +132,7 @@
       
       <!---->
       <footer >
-        <div class="container bg-info p-5">
+        <div class="container bg-cyan p-5">
       
           </div>
       </footer>

@@ -69,9 +69,8 @@
           
         </div>
           <div class="card">
-              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute "><i class="fa fa-plus"></i> Add a new Student</a>
-              
-            
+              <a id="add__new__list" href="{% url 'add-student' %}" class="btn btn-success position-absolute " ><i class="fa fa-plus"></i> Add a new Student</a>
+
               <div class="fixedTableHead">
                 <table class="table table-hover" >
                   <thead >
@@ -81,21 +80,47 @@
                       <th scope="col">Roll Number</th>
                       <th scope="col">Email</th>
                       <th scope="col">Room Number</th>
+                      <th scope="col">Remove Student</th>
                     </tr>
                   </thead>
                   <tbody>
-                  {% for complaint in complaints%}
+                  {% for student in students %}
                     <tr>
                       <th scope="row">{{forloop.counter}}</th>
                       <td>{{student.user.get_full_name}}</td>
                       <td>{{student.user.username}}</td>
                       <td>{{student.user.email}}</td>
                       <td>{{student.room_no}}</td>
+                      <td>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete-student' student.user.id %}" id="open-popup-btn"><i class="fa fa-trash"></i> Remove</a>
+                      </td>
                   {% endfor %}
+                  <!--
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>{product.name}</td>
+                      <td>
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> Delete</a>    
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>       
+                          <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> edit</a>
+                          <a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash-alt"></i> delete</a> 
+                      </td>
+                      <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Details</a> </td>
+                    </tr>
+                    -->
                   </tbody>
                 </table>
           </div>
           </div>
+          <!-- Large modal -->
       </div>
       </div>
       </main>
