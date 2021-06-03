@@ -85,7 +85,6 @@ def register_caretaker(request):
 
 @unauthenticated_user
 def login_user(request):
-
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -96,9 +95,7 @@ def login_user(request):
             return redirect('Hostel-home')
         else:
             messages.error(request, 'Invalid Credentials')
-
-    context = {}
-    return render(request, 'Hostel/login_form.html', context)
+    return render(request, 'Hostel/login_form.html')
 
 
 def logout_user(request):
@@ -148,6 +145,13 @@ def contact_page(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
+    if request.method == "POST":
+        category = request.POST.get("category")
+        complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+        complaints.reverse()
+        context = {'complaints': complaints}
+        return render(request, 'Hostel/caretaker_home.html', context)
+        
     complaints = list(Complaint.objects.all().order_by('date_created'))
     complaints.reverse()
     context = {'complaints': complaints}
@@ -165,6 +169,13 @@ def caretaker_students(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_home(request):
+    if request.method == "POST":
+        category = request.POST.get("category")
+        complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+        complaints.reverse()
+        context = {'complaints': complaints}
+        return render(request, 'Hostel/warden_home.html', context)
+
     complaints = list(Complaint.objects.all().order_by('date_created'))
     complaints.reverse()
     context = {'complaints': complaints}
