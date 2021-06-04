@@ -80,14 +80,16 @@
           <div class="card">
             
               
-            
-            <select id="add__new__list"  class="btn btn-info position-absolute form-select" > 
+            <form>
+            <select onchange="getoption();" id="add__new__list"  class="btn btn-info position-absolute form-select" > 
               
               <option selected>Search filters </option>
               <option value="1">Roomno</option>
               <option value="2">Location</option>
               <option value="3">Category</option>
+           
             </select>
+          </form>
               <div class="fixedTableHead">
                 <table class="table table-hover" >
                   <thead >
@@ -126,7 +128,16 @@
       
           </div>
       </footer>
-
+      <script type="text/javascript">
+        function getoption() {
+          var  e = 
+                    document.querySelector('#add__new__list');
+                    var as = document.forms[0].add__new__list.value;
+  var strUser = e.options[e.selectedIndex].value;
+  console.log(as,strUser);
+            
+        }
+    </script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
