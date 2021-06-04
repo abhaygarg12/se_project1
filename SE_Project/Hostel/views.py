@@ -28,6 +28,12 @@ def register_student(request):
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
 
+        if len(username) != 9 or username[:2] != '10':
+            messages.error(request, "Roll number should be registered in Thapar university")
+            return redirect('user-register')
+        else:
+            pass
+                    
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Roll number already registered")
@@ -39,7 +45,7 @@ def register_student(request):
                 user = User.objects.create_user(
                     username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
                 user.save()
-                messages.success(request, "Account created for " + email)
+                messages.success(request, "Account created for " + username)
                 group = Group.objects.get(name="student")
                 user.groups.add(group)
                 student = Student.objects.create(
@@ -85,7 +91,6 @@ def register_caretaker(request):
 
 @unauthenticated_user
 def login_user(request):
-
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -96,9 +101,7 @@ def login_user(request):
             return redirect('Hostel-home')
         else:
             messages.error(request, 'Invalid Credentials')
-
-    context = {}
-    return render(request, 'Hostel/login_form.html', context)
+    return render(request, 'Hostel/login_form.html')
 
 
 def logout_user(request):
@@ -148,6 +151,13 @@ def contact_page(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
+    # if request.method == "POST":
+    #     category = request.POST.get("category")
+    #     complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+    #     complaints.reverse()
+    #     context = {'complaints': complaints}
+    #     return render(request, 'Hostel/caretaker_home.html', context)
+        
     complaints = list(Complaint.objects.all().order_by('date_created'))
     complaints.reverse()
     context = {'complaints': complaints}
@@ -165,6 +175,13 @@ def caretaker_students(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_home(request):
+    # if request.method == "POST":
+    #     category = request.POST.get("category")
+    #     complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+    #     complaints.reverse()
+    #     context = {'complaints': complaints}
+    #     return render(request, 'Hostel/warden_home.html', context)
+
     complaints = list(Complaint.objects.all().order_by('date_created'))
     complaints.reverse()
     context = {'complaints': complaints}
