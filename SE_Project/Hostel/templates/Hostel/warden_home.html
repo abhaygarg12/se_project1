@@ -80,14 +80,14 @@
           <div class="card">
             
               
-            <form method="POST">
-            <select onchange="getoption();" id="add__new__list"  class="btn btn-info position-absolute form-select" > 
+          <form method="POST">
+            {% csrf_token %}
+            <select name="filter" onchange="getoption();" id="add__new__list"  class="btn btn-info position-absolute form-select" > 
               
               <option selected>Search filters </option>
-              <option value="1">Roomno</option>
-              <option value="2">Location</option>
-              <option value="3">Category</option>
-           
+              {% for filter in filters %}
+                <option value="{{filter}}">{{filter}}</option>
+              {% endfor %}
             </select>
             <input type="submit"  id="submitform"/>
           </form>
@@ -129,7 +129,7 @@
       
           </div>
       </footer>
-      <script type="text/javascript">
+      {% comment %} <script type="text/javascript">
         function getoption() {
           var  e = 
                     document.querySelector('#add__new__list');
@@ -138,7 +138,7 @@
                     console.log(as)
             
         }
-    </script>
+    </script> {% endcomment %}
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
