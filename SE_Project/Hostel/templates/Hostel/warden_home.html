@@ -80,7 +80,7 @@
           <div class="card">
             
               
-            <form>
+            <form method="POST">
             <select onchange="getoption();" id="add__new__list"  class="btn btn-info position-absolute form-select" > 
               
               <option selected>Search filters </option>
@@ -89,6 +89,7 @@
               <option value="3">Category</option>
            
             </select>
+            <input type="submit"  id="submitform"/>
           </form>
               <div class="fixedTableHead">
                 <table class="table table-hover" >
@@ -133,8 +134,8 @@
           var  e = 
                     document.querySelector('#add__new__list');
                     var as = document.forms[0].add__new__list.value;
-  var strUser = e.options[e.selectedIndex].value;
-  console.log(as,strUser);
+                    var strUser = e.options[e.selectedIndex].value;
+                    console.log(as)
             
         }
     </script>
