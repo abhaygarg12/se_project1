@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.forms import ModelForm
 from .forms import *
 from .forms import ComplaintForm
@@ -151,16 +151,27 @@ def contact_page(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['caretaker'])
 def caretaker_home(request):
-    # if request.method == "POST":
-    #     category = request.POST.get("category")
-    #     complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
-    #     complaints.reverse()
-    #     context = {'complaints': complaints}
-    #     return render(request, 'Hostel/caretaker_home.html', context)
-        
-    complaints = list(Complaint.objects.all().order_by('date_created'))
-    complaints.reverse()
-    context = {'complaints': complaints}
+    if request.method == "POST":
+        category = request.POST.get("filter")
+        if category == '0':
+            complaints = list(Complaint.objects.all().order_by('date_created'))
+            complaints.reverse()
+        else:
+            complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+            complaints.reverse()
+    else:
+        complaints = list(Complaint.objects.all().order_by('date_created'))
+        complaints.reverse()
+    
+    c = Complaint.objects.all()
+    filter = []
+    for i in c:
+        l = i.location
+        if l in filter:
+            pass
+        else:
+            filter.append(l)
+    context = {'complaints': complaints, 'filters':filter}
     return render(request, 'Hostel/caretaker_home.html', context)
 
 
@@ -175,16 +186,27 @@ def caretaker_students(request):
 @login_required(login_url='user-login')
 @allowed_users(allowed_roles=['warden'])
 def warden_home(request):
-    # if request.method == "POST":
-    #     category = request.POST.get("category")
-    #     complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
-    #     complaints.reverse()
-    #     context = {'complaints': complaints}
-    #     return render(request, 'Hostel/warden_home.html', context)
-
-    complaints = list(Complaint.objects.all().order_by('date_created'))
-    complaints.reverse()
-    context = {'complaints': complaints}
+    if request.method == "POST":
+        category = request.POST.get("filter")
+        if category == '0':
+            complaints = list(Complaint.objects.all().order_by('date_created'))
+            complaints.reverse()
+        else:
+            complaints = list(Complaint.objects.filter(location=category).order_by('date_created'))
+            complaints.reverse()
+    else:
+        complaints = list(Complaint.objects.all().order_by('date_created'))
+        complaints.reverse()
+    
+    c = Complaint.objects.all()
+    filter = []
+    for i in c:
+        l = i.location
+        if l in filter:
+            pass
+        else:
+            filter.append(l)
+    context = {'complaints': complaints, 'filters':filter}
     return render(request, 'Hostel/warden_home.html', context)
 
 
