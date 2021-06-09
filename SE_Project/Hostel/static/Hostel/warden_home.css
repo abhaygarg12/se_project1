@@ -130,6 +130,11 @@ footer {
   right: 0px;
   margin-top: -65px;
 }
+#add__new__list1 {
+  right: 0px;
+  margin-top: -65px;
+}
+
 .fixTableHead {
   overflow: auto;
   height: 50px;
@@ -145,4 +150,7 @@ table {
 th,
 td {
   padding: 8px 15px;
+}
+.btn btn-info position-absolute form-select {
+  margin: left 50px;
 }
