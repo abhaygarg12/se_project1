@@ -84,7 +84,7 @@
             {% csrf_token %}
             <select name="filter" onchange="getoption();" id="add__new__list"  class="btn btn-info pr-5  mr-5 position-absolute form-select" > 
               
-              <option selected>Search filters </option>
+              <option selected value="0">Search filters </option>
               {% for filter in filters %}
                 <option value="{{filter}}">{{filter}}</option>
                 
@@ -99,7 +99,7 @@
                     <tr>
                       <th scope="col">S.No</th>
                       <th scope="col">Complaint title</th>
-                      <th scope="col">Location</th>
+                      <th scope="col">Category</th>
                       <th scope="col">Status</th>
                       <th scope="col">Edit Complaint </th>
                       <th scope="col">Complaint  info</th>

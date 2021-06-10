@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.forms import ModelForm
 from .forms import *
-from .forms import ComplaintForm
 
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -394,12 +393,22 @@ def add_complaint(request):
         complaint = Complaint.objects.create(title=title, description=description, location=location, name=name)
         messages.success(request, "Complaint added successfully!!")
         return redirect('Hostel-home')
-    return render(request, 'Hostel/add_complaint.html')
+    c = Complaint._meta.get_field('location').choices
+    category = []
+    for i in c:
+        l = i[0]
+        if l in category:
+            pass
+        elif l == "Other":
+            pass
+        else:
+            category.append(l)
+    category.append("Other")
+    return render(request, 'Hostel/add_complaint.html', {'category':category})
 
 
 @login_required(login_url='user-login')
 def update_complaint(request, pk):
-
     complaint = Complaint.objects.get(id=pk)
     if request.method == 'POST':
         title = request.POST.get("title")
@@ -411,8 +420,18 @@ def update_complaint(request, pk):
         complaint.save()
         messages.success(request, "Complaint updated successfully!!")
         return redirect('Hostel-home')
-
-    context = {'complaint': complaint}
+    c = Complaint._meta.get_field('location').choices
+    category = []
+    for i in c:
+        l = i[0]
+        if l in category:
+            pass
+        elif l == "Other":
+            pass
+        else:
+            category.append(l)
+    category.append("Other")
+    context = {'complaint': complaint, 'category':category}
     return render(request, 'Hostel/update_complaint.html', context)
 
 

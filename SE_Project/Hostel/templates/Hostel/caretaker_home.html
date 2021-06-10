@@ -55,6 +55,7 @@
         
       <main>
       <div class="container my-5">
+      {% if message %}
       {% for message in messages %}
       <div class="container-fluid p-0">
       <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
@@ -65,12 +66,27 @@
       </div>
       </div>
       {% endfor %}
+      {% endif %}
              <div class="card-body text-center">
           <div><h4 class="card-title">Student Complaints</h4>
           </div>
           
         </div>
           <div class="card">
+
+          <form method="POST">
+            {% csrf_token %}
+            <select name="filter" onchange="getoption();" id="add__new__list"  class="btn btn-info pr-5  mr-5 position-absolute form-select" > 
+              
+              <option selected value="0">Search filters </option>
+              {% for filter in filters %}
+                <option value="{{filter}}">{{filter}}</option>
+                
+              {% endfor %}
+              <option value="0">Clear filter</option>
+            </select>
+            <input type="submit" id="add__new__list"  class="btn btn-primary  ml-5  position-absolute form-select" />
+          </form>
             
               <div class="fixedTableHead">
                 <table class="table table-hover" >
@@ -78,7 +94,7 @@
                     <tr>
                       <th scope="col">S.No</th>
                       <th scope="col">Complaint title</th>
-                      <th scope="col">Location</th>
+                      <th scope="col">Category</th>
                       <th scope="col">Status</th>
                       <th scope="col">Edit Complaint </th>
                       <th scope="col">Complaint  info</th>

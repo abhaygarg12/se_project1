@@ -17,12 +17,23 @@ class Complaint(models.Model):
 			('Pending', 'Pending'),
 			('Completed', 'Completed'),
     }
+    Category = {
+        ('Room','Room'),
+        ('Bathroom','Bathroom'),
+        ('Gym','Gym'),
+        ('Mess','Mess'),
+        ('Reading Room','Reading Room'),
+        ('TV Room','TV Room'),
+        ('Games Room','Games Room'),
+        ('Night Canteen','Night Canteen'),
+        ('Other','Other')
+    }
 
     name = models.ForeignKey(Student, on_delete = models.CASCADE)
     title = models.CharField(max_length=50, default= "")
     description = models.CharField(max_length=300)
     date_created = models.DateField(auto_now_add=True)
-    location = models.CharField(max_length=30)
+    location = models.CharField(max_length=30, choices=Category)
     status = models.CharField(max_length=20, choices=STATUS, default='Pending')
 
     def __str__(self):

@@ -46,44 +46,6 @@
         </div>
       </header>
         
-      <main>
-      <div class="container my-5">
-             <div class="card-body text-center">
-          <div><h4 class="card-title">Hostel Caretakers</h4>
-          </div>
-          
-        </div>
-          <div class="card">            
-              <div class="fixedTableHead">
-                <table class="table table-hover" >
-                    <thead >
-                      <tr>
-                        <th scope="col">S.No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Mobile Number</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {% for caretaker in caretakers %}
-                      <tr>
-                        <th scope="row">{{forloop.counter}}</th>
-                        <td>{{caretaker.user.get_full_name}}</td>
-                        <td>{{caretaker.user.email}}</td>
-                        <td>{{caretaker.mobile}}</td>                        
-                      </tr>
-                      
-                    {% endfor %}
-                   
-                    </tbody>
-                  </table>
-          </div>
-          </div>
-          <!-- Large modal -->
-        </div>
-      </main>
-      <!---->
-      
       <!---->
       <main>
       <div class="container my-5">
@@ -108,7 +70,7 @@
                       <tr>
                         <th scope="row">{{forloop.counter}}</th>
                         <td>{{warden.user.get_full_name}}</td>
-                        <td>{{warden.user.email}}</td>
+                        <td>{{warden.user.username}}</td>
                         <td>{{warden.mobile}}</td>                        
                       </tr>
                       
@@ -121,7 +83,45 @@
           <!-- Large modal -->
         </div>
       </main>
-     
+      <main>
+      {% if caretakers %}
+          <div class="container my-5">
+              <div class="card-body text-center">
+              <div><h4 class="card-title">Hostel Caretakers</h4>
+          </div>
+            
+          </div>
+            <div class="card">            
+                <div class="fixedTableHead">
+                  <table class="table table-hover" >
+                      <thead >
+                        <tr>
+                          <th scope="col">S.No</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Mobile Number</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for caretaker in caretakers %}
+                        <tr>
+                          <th scope="row">{{forloop.counter}}</th>
+                          <td>{{caretaker.user.get_full_name}}</td>
+                          <td>{{caretaker.user.email}}</td>
+                          <td>{{caretaker.mobile}}</td>                        
+                        </tr>
+                        
+                      {% endfor %}
+                    
+                      </tbody>
+                    </table>
+            </div>
+            </div>
+            <!-- Large modal -->
+          </div>
+        </main>
+        <!---->
+        {% endif %}
       
       <footer >
         <div class="container bg-cyan p-5">

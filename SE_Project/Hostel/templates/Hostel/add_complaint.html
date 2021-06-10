@@ -58,8 +58,14 @@
                     <input type="text" class="form-control" name="title" id="listname" placeholder="Enter title">
                   </div>
                   <div class="form-group">
-                    <label for="datepicker">Location</label>
-                    <input  type="text" class="form-control" name="location" id="datepicker" placeholder="enter the location">
+                    <label for="datepicker">Category</label>
+                    <select name="location" class="form-control" id="datepicker" placeholder="Enter the category"> 
+                      {% for cat in category %}
+                        <option value="{{cat}}">{{cat}}</option> 
+                      {% endfor %}
+                    </select>
+                    {% comment %} <input  type="text" class="form-control" name="location" id="datepicker" placeholder="Enter the category"> {% endcomment %}
+                    {{form.as_p}}
                   </div>
                   <div class="form-group">
                                           <label for="datepicker">Add description</label>

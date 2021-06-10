@@ -58,7 +58,7 @@
                     <tr>
                       <th scope="col">ID</th>
                       <th scope="col">Complaint type</th>
-                      <th scope="col">Location</th>
+                      <th scope="col">Category</th>
                       <th scope="col">Edit Complaint </th>
                       <th scope="col">Complaint  info</th>
                     </tr>
@@ -113,8 +113,13 @@
                     <input type="text" class="form-control" value="{{complaint.title}}" name="title" id="listname" placeholder="Enter title">
                   </div>
                   <div class="form-group">
-                    <label for="datepicker">Location</label>
-                    <input  type="text" class="form-control" value="{{complaint.location}}" name="location" id="datepicker" placeholder="Enter the location">
+                    <label for="datepicker">Category</label>
+                    <select name="location" class="form-control" id="datepicker" placeholder="Enter the category">
+                      <option selected>{{complaint.location}}</option>
+                      {% for cat in category %}
+                        <option value="{{cat}}">{{cat}}</option> 
+                      {% endfor %}
+                    </select>
                   </div>
                   <div class="form-group">
                                           <label for="datepicker">Add description</label>
